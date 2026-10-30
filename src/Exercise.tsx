@@ -33,7 +33,7 @@ export function Exercise({ task, spanish, onDone, initial = '', onDraft }: {
     const free = task.kind === 'free', transfer = state.stage === 'TRANSFER';
     const active = transfer ? (task.transfer ?? task) : task;
     const teaching = state.stage === 'RETEACH' || explain;
-    const finished = state.stage === 'REVIEW';
+    const finished = !free && state.stage === 'REVIEW';
     function send(event: LearningEvent) { const next = transition(state, event, task); if (context)
         context.dispatch(task, event);
     else
