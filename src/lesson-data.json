@@ -1,0 +1,908 @@
+{
+  "weeks": [
+    {
+      "title": "Build a sentence",
+      "focus": "Subjects, verbs, and useful introductions",
+      "spanish": "Identifica sujeto y verbo. Usa frases cortas y completas."
+    },
+    {
+      "title": "Now or usually?",
+      "focus": "Present simple and present continuous",
+      "spanish": "Usa presente simple para hábitos; am/is/are + -ing para acciones en curso."
+    },
+    {
+      "title": "Tell the story",
+      "focus": "Past simple, articles, and prepositions",
+      "spanish": "Para el pasado usa did + verbo base en preguntas; los verbos afirmativos pueden ser irregulares."
+    },
+    {
+      "title": "Connect your ideas",
+      "focus": "Reasons, sequence, and conversational rescue",
+      "spanish": "Relaciona ideas: because da una razón, so da un resultado y but introduce contraste."
+    },
+    {
+      "title": "Share an update",
+      "focus": "Progress, blockers, and dependencies",
+      "spanish": "Da un avance, un bloqueo y un siguiente paso. Usa need to + verbo."
+    },
+    {
+      "title": "Plan what comes next",
+      "focus": "Future forms and realistic timelines",
+      "spanish": "Will sirve para decisiones o predicciones; going to para planes. Present continuous también expresa acuerdos."
+    },
+    {
+      "title": "Make meetings useful",
+      "focus": "Questions, clarification, and decisions",
+      "spanish": "Después de do, does y did usa el verbo base. Pide aclaración con preguntas concretas."
+    },
+    {
+      "title": "Work through dependencies",
+      "focus": "Trade-offs, escalation, and priorities",
+      "spanish": "Nombra la dependencia, explica su impacto y pide una acción con fecha."
+    },
+    {
+      "title": "Lead a conversation",
+      "focus": "Delegation, feedback, and risk",
+      "spanish": "Usa peticiones claras y corteses. Distingue un riesgo posible de un problema actual."
+    },
+    {
+      "title": "Negotiate a deadline",
+      "focus": "Options, constraints, and agreements",
+      "spanish": "Explica la restricción y ofrece una alternativa viable. If + presente, will + verbo."
+    },
+    {
+      "title": "Tell your professional story",
+      "focus": "Interviews, examples, and small talk",
+      "spanish": "Organiza una respuesta con situación, acción y resultado. Usa ejemplos ficticios."
+    },
+    {
+      "title": "Bring it all together",
+      "focus": "Longer answers, synthesis, and reflection",
+      "spanish": "Une pasado, presente y futuro. Resume lo esencial y confirma el siguiente paso."
+    }
+  ],
+  "rows": [
+    [
+      "Introduce yourself",
+      "What do you do on Project Compass? I coordinate the design team.",
+      "The speaker coordinates a team.",
+      "I ___ the design team.",
+      "coordinate",
+      "She coordinate the design team.",
+      "She coordinates the design team.",
+      "Add -s to a present-simple verb after she, he, or it."
+    ],
+    [
+      "Name a responsibility",
+      "Who checks the weekly report? The project coordinator checks it every Friday.",
+      "The report is checked each Friday.",
+      "The coordinator ___ the report.",
+      "checks",
+      "He need a clear plan.",
+      "He needs a clear plan.",
+      "A singular subject takes needs; I, you, we, and they take need."
+    ],
+    [
+      "Ask about a role",
+      "Does the designer attend the planning meeting? Yes, she attends every Monday.",
+      "The designer attends a regular meeting.",
+      "___ the designer attend meetings?",
+      "Does",
+      "Does she attends meetings?",
+      "Does she attend meetings?",
+      "After does, use the base verb: attend."
+    ],
+    [
+      "Explain what you need",
+      "What do you need to start? We need to review the design first.",
+      "A design review must happen first.",
+      "We need ___ review the design.",
+      "to",
+      "We need review the design.",
+      "We need to review the design.",
+      "Use need to + base verb to describe a necessary action."
+    ],
+    [
+      "A simple introduction",
+      "Are you the project coordinator? Yes, I am. I work with two designers.",
+      "The speaker works with two designers.",
+      "I ___ the project coordinator.",
+      "am",
+      "I is responsible for planning.",
+      "I am responsible for planning.",
+      "Use am with I, is with a singular third person, and are with we or they."
+    ],
+    [
+      "Describe a routine",
+      "How often do you update the plan? I update it every morning before our meeting.",
+      "The plan is updated every morning.",
+      "She ___ the plan every morning.",
+      "updates",
+      "She update the plan every day.",
+      "She updates the plan every day.",
+      "Every morning signals a routine, so use the present simple."
+    ],
+    [
+      "Say what is happening",
+      "What are you working on right now? I am checking the new design.",
+      "The speaker is checking a design now.",
+      "I am ___ the new design.",
+      "checking",
+      "I checking the new design.",
+      "I am checking the new design.",
+      "Present continuous needs am, is, or are before the -ing form."
+    ],
+    [
+      "Routine versus today",
+      "Do you usually work alone? Usually, yes, but today I am working with the team.",
+      "Today is different from the usual routine.",
+      "Today she ___ working with the team.",
+      "is",
+      "She work with us today.",
+      "She is working with us today.",
+      "Use the continuous for an action happening now or a temporary situation."
+    ],
+    [
+      "Ask about progress",
+      "Is the team testing the prototype? Not yet. They are finalizing the designs.",
+      "Design work is still happening.",
+      "They are ___ the designs.",
+      "finalizing",
+      "They are finalize the designs.",
+      "They are finalizing the designs.",
+      "After are in the continuous, use the -ing form. Finalize designs is a natural collocation."
+    ],
+    [
+      "Give a short status",
+      "What does the team need today? It needs a decision, and we are preparing two options.",
+      "The team needs a decision.",
+      "The team ___ a decision.",
+      "needs",
+      "The team need to deciding.",
+      "The team needs to decide.",
+      "Needs agrees with the team; to is followed by the base verb decide."
+    ],
+    [
+      "Report yesterday's work",
+      "What did you finish yesterday? I finished the budget summary before lunch.",
+      "The summary was finished yesterday.",
+      "Yesterday I ___ the budget summary.",
+      "finished",
+      "Yesterday I finish the summary.",
+      "Yesterday I finished the summary.",
+      "Use past simple for a completed action with a finished time such as yesterday."
+    ],
+    [
+      "Ask about a past decision",
+      "Did they approve the budget? No, they asked for more information.",
+      "The budget was not approved.",
+      "Did they ___ the budget?",
+      "approve",
+      "Did they approved the budget?",
+      "Did they approve the budget?",
+      "After did, use the base verb, even when the question refers to the past."
+    ],
+    [
+      "Use a specific article",
+      "Where is the report we discussed? The report is in the shared folder.",
+      "The report is in a shared folder.",
+      "Please open ___ report we discussed.",
+      "the",
+      "Please open report we discussed.",
+      "Please open the report we discussed.",
+      "Use the for a specific thing already identified by both speakers."
+    ],
+    [
+      "Choose a work preposition",
+      "What are you working on? I am working on the launch plan, but I am waiting for approval.",
+      "The speaker is waiting for approval.",
+      "I am waiting ___ approval.",
+      "for",
+      "I am working in the launch plan.",
+      "I am working on the launch plan.",
+      "Work on a task; wait for a person, decision, or event."
+    ],
+    [
+      "Tell a short past story",
+      "How did the review go? We found a problem, discussed two options, and chose a smaller scope.",
+      "The team chose a smaller scope.",
+      "We ___ a problem in the review.",
+      "found",
+      "We find a problem yesterday.",
+      "We found a problem yesterday.",
+      "Find becomes found in the past; choose becomes chose."
+    ],
+    [
+      "Explain a reason",
+      "Why is the release delayed? The release is delayed because we need another test.",
+      "Another test is the reason for the delay.",
+      "We need another test, ___ the release is delayed.",
+      "so",
+      "The release is delayed because of we need a test.",
+      "The release is delayed because we need a test.",
+      "Because introduces a clause; because of introduces a noun phrase."
+    ],
+    [
+      "Contrast two ideas",
+      "Is the design finished? The design is finished, but the budget is still under review.",
+      "The budget review is still open.",
+      "The design is ready, ___ the budget is not.",
+      "but",
+      "Although the design is ready, but we need approval.",
+      "Although the design is ready, we need approval.",
+      "Use although with a clause; do not add but to the same construction."
+    ],
+    [
+      "Explain a sequence",
+      "How do we start the review? First, read the summary. Next, check the risks. Finally, agree on an owner.",
+      "Reading the summary is the first step.",
+      "___, read the summary; next, check the risks.",
+      "First",
+      "First read the summary, finally check risks, next agree.",
+      "First read the summary, next check risks, finally agree.",
+      "First starts a sequence; next continues it; finally marks its last step."
+    ],
+    [
+      "Ask someone to repeat",
+      "Could you repeat that? Do you mean we should send the draft today or tomorrow? Tomorrow, please.",
+      "The draft should be sent tomorrow.",
+      "Could you ___ that, please?",
+      "repeat",
+      "Could you to repeat that?",
+      "Could you repeat that?",
+      "After could, use a base verb without to. Ask a focused follow-up after requesting repetition."
+    ],
+    [
+      "Clarify your meaning",
+      "Let me clarify. The prototype is ready for internal review, not for release.",
+      "The prototype is only ready for internal review.",
+      "What I ___ is that we can review it internally.",
+      "mean",
+      "Let me to clarify the next step.",
+      "Let me clarify the next step.",
+      "Let + person + base verb: let me clarify. Use What I mean is to repair a message."
+    ],
+    [
+      "Share completed and current work",
+      "What is your update? We finished the draft yesterday, and today we are checking the figures.",
+      "The figures are being checked today.",
+      "Today we are ___ the figures.",
+      "checking",
+      "We finished yesterday and today we checks figures.",
+      "We finished yesterday and today we are checking figures.",
+      "Switch tense when the time changes: finished yesterday; are checking today."
+    ],
+    [
+      "Describe a blocker",
+      "What is blocking the team? We cannot start testing because we are waiting for budget approval.",
+      "Budget approval is blocking testing.",
+      "We cannot start ___ without approval.",
+      "testing",
+      "We cannot start to testing.",
+      "We cannot start testing.",
+      "Start can take an -ing form or to + base verb, but never to testing."
+    ],
+    [
+      "Name a dependency",
+      "What does the launch depend on? It depends on the security review, which is scheduled for Thursday.",
+      "The launch depends on a security review.",
+      "The launch depends ___ the security review.",
+      "on",
+      "The launch depends of the review.",
+      "The launch depends on the review.",
+      "The fixed phrase is depend on, not depend of."
+    ],
+    [
+      "State the next step",
+      "What happens next? We need to finalize the designs before we can ask for approval.",
+      "The designs must be finalized first.",
+      "We need to ___ the designs.",
+      "finalize",
+      "We need to finalizing the designs.",
+      "We need to finalize the designs.",
+      "Need to takes a base verb. Before links the earlier action to the later one."
+    ],
+    [
+      "Close an open issue",
+      "Are you still working on the open issue? Yes, I am working on closing it before Friday.",
+      "The speaker aims to close the issue before Friday.",
+      "I am working on ___ the issue.",
+      "closing",
+      "I am working on close the issue.",
+      "I am working on closing the issue.",
+      "After the preposition on, use a noun or an -ing form."
+    ],
+    [
+      "Make a plan",
+      "What are you going to do next week? We are going to test the prototype with three volunteers.",
+      "Testing is planned for next week.",
+      "We are going ___ test the prototype.",
+      "to",
+      "We going to test next week.",
+      "We are going to test next week.",
+      "Going to needs a form of be: we are going to test."
+    ],
+    [
+      "Offer immediate help",
+      "Who can take notes? I will take them. Please start the discussion.",
+      "The speaker volunteers to take notes.",
+      "I ___ take the notes.",
+      "will",
+      "I will to take the notes.",
+      "I will take the notes.",
+      "Will takes a base verb without to; it can express a decision made now."
+    ],
+    [
+      "Confirm an arrangement",
+      "When are you meeting the designer? We are meeting her at ten tomorrow. It is already in the calendar.",
+      "The meeting is arranged for ten tomorrow.",
+      "We ___ meeting the designer tomorrow.",
+      "are",
+      "We meeting her at ten tomorrow.",
+      "We are meeting her at ten tomorrow.",
+      "Present continuous can describe an arranged future event with a clear time."
+    ],
+    [
+      "Give a realistic estimate",
+      "Can we finish by Friday? We can finish the draft by Friday, but the final review will take another day.",
+      "Only the draft can be finished by Friday.",
+      "The review will ___ another day.",
+      "take",
+      "The review will takes another day.",
+      "The review will take another day.",
+      "After will, use take. Distinguish a draft deadline from a final approval deadline."
+    ],
+    [
+      "Explain a condition",
+      "Will we launch on Monday? If the review passes, we will launch on Monday. Otherwise, we will wait.",
+      "Monday's launch depends on the review.",
+      "If the review ___, we will launch.",
+      "passes",
+      "If the review will pass, we will launch.",
+      "If the review passes, we will launch.",
+      "In a first conditional, use present simple after if and will in the result clause."
+    ],
+    [
+      "Open a meeting",
+      "What should we cover first? First, let us confirm the goal. Then we can discuss the open risks.",
+      "The meeting starts by confirming the goal.",
+      "Let us ___ the goal first.",
+      "confirm",
+      "Let us to confirm the goal.",
+      "Let us confirm the goal.",
+      "Let us takes a base verb. An agenda tells people what comes first and next."
+    ],
+    [
+      "Ask a focused question",
+      "When does the review start? It starts at two, and the designer will lead it.",
+      "The review begins at two.",
+      "When ___ the review start?",
+      "does",
+      "When does the review starts?",
+      "When does the review start?",
+      "Use does + subject + base verb in a present-simple question."
+    ],
+    [
+      "Check understanding",
+      "I am not sure I understood. Are you asking for a new design or a small change? Just a small change.",
+      "Only a small change is requested.",
+      "I am not sure I ___.",
+      "understood",
+      "I am not sure I understanded.",
+      "I am not sure I understood.",
+      "The past form of understand is understood. Offer two interpretations to check meaning."
+    ],
+    [
+      "Interrupt politely",
+      "Sorry to jump in. Could we confirm who owns the next action before we move on?",
+      "The speaker wants to confirm an action owner.",
+      "Sorry ___ jump in.",
+      "to",
+      "Sorry for jump in.",
+      "Sorry to jump in.",
+      "Sorry to jump in is a useful polite interruption; sorry for is followed by an -ing form."
+    ],
+    [
+      "Summarize decisions",
+      "What did we agree? We agreed to reduce the scope and send the revised plan by Wednesday.",
+      "A revised plan is due Wednesday.",
+      "We agreed ___ reduce the scope.",
+      "to",
+      "We agreed reduce the scope.",
+      "We agreed to reduce the scope.",
+      "Agree to + verb describes a shared decision to act."
+    ],
+    [
+      "Request a missing input",
+      "What do you need from us? We need the final figures by noon so that we can send the report today.",
+      "Final figures are needed by noon.",
+      "We need the figures ___ noon.",
+      "by",
+      "We need the figures until noon.",
+      "We need the figures by noon.",
+      "By sets a deadline; until describes something continuing up to a time."
+    ],
+    [
+      "Explain an impact",
+      "What happens if the review is late? A late review will delay testing by two days.",
+      "Testing could be delayed by two days.",
+      "A late review will ___ testing.",
+      "delay",
+      "A late review will delays testing.",
+      "A late review will delay testing.",
+      "Will + base verb expresses a possible future impact. Quantify the impact when you can."
+    ],
+    [
+      "Escalate with context",
+      "Why are you escalating this? We asked for approval on Monday, and we still have no decision. Testing starts tomorrow.",
+      "A missing decision threatens tomorrow's testing.",
+      "We asked ___ approval on Monday.",
+      "for",
+      "We asked approval on Monday.",
+      "We asked for approval on Monday.",
+      "Ask for a thing; ask someone a question. Include the request history and the decision needed."
+    ],
+    [
+      "Compare two priorities",
+      "Which task comes first? Fix the sign-in issue first because it prevents people from testing. The new icon can wait.",
+      "The sign-in issue has higher priority.",
+      "The icon can ___ until tomorrow.",
+      "wait",
+      "The icon can waits until tomorrow.",
+      "The icon can wait until tomorrow.",
+      "Modal verbs such as can take the base verb. Prioritize by impact, not only effort."
+    ],
+    [
+      "Name a trade-off",
+      "Should we add the extra screen? It gives more detail; however, it adds two days of work. We need a decision today.",
+      "The extra screen adds detail and work.",
+      "The extra screen ___ two days of work.",
+      "adds",
+      "It give detail however it adds work.",
+      "It gives detail; however, it adds work.",
+      "However connects contrasting statements and is normally separated with punctuation."
+    ],
+    [
+      "Delegate a clear task",
+      "Could you review the summary by Thursday and flag any missing costs? Yes, I will send comments before lunch.",
+      "The task is a cost-focused review due Thursday.",
+      "Could you ___ the summary by Thursday?",
+      "review",
+      "Could you reviews the summary?",
+      "Could you review the summary?",
+      "A clear request names the action, scope, and deadline; could takes the base verb."
+    ],
+    [
+      "Give specific feedback",
+      "What should I change in the update? Keep the summary, but add an owner and a date for each risk.",
+      "Each risk needs an owner and a date.",
+      "Each risk ___ an owner.",
+      "needs",
+      "Each risk need an owner.",
+      "Each risk needs an owner.",
+      "Each takes a singular verb. Specific feedback tells the listener what to change."
+    ],
+    [
+      "Distinguish risk from issue",
+      "Is the supplier delay confirmed? No. It might happen next week, so we should prepare a backup plan.",
+      "The supplier delay is a possible future risk.",
+      "The delay might ___ next week.",
+      "happen",
+      "The delay might happens next week.",
+      "The delay might happen next week.",
+      "Might + base verb describes uncertainty. A risk is possible; an issue is already happening."
+    ],
+    [
+      "Propose mitigation",
+      "How can we reduce the risk? We can test a smaller sample now and keep one day for fixes.",
+      "Early sample testing is proposed to reduce risk.",
+      "We can reduce the risk ___ testing a sample.",
+      "by",
+      "We reduce the risk by test a sample.",
+      "We reduce the risk by testing a sample.",
+      "By + -ing explains the method used to achieve a result."
+    ],
+    [
+      "Balance two viewpoints",
+      "Why not release today? The team wants quick feedback. On the other hand, support needs time to prepare instructions.",
+      "A fast release conflicts with support preparation.",
+      "Support ___ time to prepare.",
+      "needs",
+      "Support need time to prepare.",
+      "Support needs time to prepare.",
+      "On the other hand introduces a competing perspective. Support as a department takes needs here."
+    ],
+    [
+      "Negotiate more time",
+      "Can you deliver tomorrow? We can send the draft tomorrow, but we need two more days for the checked version.",
+      "The checked version requires two more days.",
+      "We need two more days ___ the checked version.",
+      "for",
+      "We need two days more for checking version.",
+      "We need two more days for the checked version.",
+      "Two more days is natural word order; distinguish the draft from the checked deliverable."
+    ],
+    [
+      "Offer a smaller scope",
+      "Is Friday possible? Yes, if we remove the optional chart. We can add it in the next version.",
+      "Friday is possible with reduced scope.",
+      "If we ___ the chart, Friday is possible.",
+      "remove",
+      "If we will remove the chart, Friday is possible.",
+      "If we remove the chart, Friday is possible.",
+      "Present simple after if states the condition for a feasible agreement."
+    ],
+    [
+      "Disagree constructively",
+      "Do you agree with the new date? I see the benefit, but I am concerned about the testing time. Could we keep one extra day?",
+      "The speaker is concerned about testing time.",
+      "I am concerned ___ the testing time.",
+      "about",
+      "I am concerned for the testing time.",
+      "I am concerned about the testing time.",
+      "Concerned about introduces a worry. Acknowledge the benefit before stating a concern."
+    ],
+    [
+      "Confirm an agreement",
+      "What is the final agreement? We will deliver the core screens on Friday and the optional chart next Tuesday.",
+      "The optional chart is due next Tuesday.",
+      "We will ___ the core screens on Friday.",
+      "deliver",
+      "We will delivery the screens on Friday.",
+      "We will deliver the screens on Friday.",
+      "Deliver is a verb; delivery is a noun. Confirm scope and dates separately."
+    ],
+    [
+      "Handle a missed deadline",
+      "Why did we miss the date? We underestimated the review time. We have revised the plan and will share daily updates.",
+      "Review time was underestimated.",
+      "We ___ the review time.",
+      "underestimated",
+      "We did not estimated the review time well.",
+      "We did not estimate the review time well.",
+      "After did not, use a base verb. Explain what happened and the recovery action without blame."
+    ],
+    [
+      "Introduce your experience",
+      "Tell me about your role in Project Compass. I coordinated a small team and helped it turn goals into weekly plans.",
+      "The speaker coordinated planning.",
+      "I ___ a small team on Project Compass.",
+      "coordinated",
+      "I was coordinate a small team.",
+      "I coordinated a small team.",
+      "Use past simple for a completed role; was coordinated would be passive and change the meaning."
+    ],
+    [
+      "Describe a challenge",
+      "Tell me about a difficult situation. A review was late, so I proposed a smaller release and confirmed a new date.",
+      "The speaker responded to a late review with a smaller release.",
+      "I ___ a smaller release.",
+      "proposed",
+      "I proposed to a smaller release.",
+      "I proposed a smaller release.",
+      "Propose can take a noun directly: propose a plan or a smaller release."
+    ],
+    [
+      "Explain a result",
+      "What was the outcome? We delivered the core features on time. As a result, the team could collect feedback that week.",
+      "Timely delivery allowed feedback that week.",
+      "As a result, we ___ collect feedback.",
+      "could",
+      "As result we could collect feedback.",
+      "As a result, we could collect feedback.",
+      "As a result introduces an outcome; it includes the article a."
+    ],
+    [
+      "Keep small talk going",
+      "How was your weekend? It was relaxing. I went for a walk. How about yours?",
+      "The speaker went for a walk.",
+      "I ___ for a walk.",
+      "went",
+      "I goed for a walk.",
+      "I went for a walk.",
+      "Go has the irregular past went. Answer briefly and return a friendly question."
+    ],
+    [
+      "Ask about a new role",
+      "Do you have any questions for us? Yes. What would success look like in the first three months?",
+      "The candidate asks about early expectations.",
+      "What would success ___ like?",
+      "look",
+      "What would success looks like?",
+      "What would success look like?",
+      "Would takes a base verb. A focused interview question helps clarify expectations."
+    ],
+    [
+      "Give a three-part update",
+      "What is the latest? We fixed the issue yesterday. We are testing today. If the tests pass, we will release tomorrow.",
+      "Tomorrow's release depends on today's tests.",
+      "If the tests pass, we will ___ tomorrow.",
+      "release",
+      "Yesterday we fix it and tomorrow we released.",
+      "Yesterday we fixed it and tomorrow we will release.",
+      "Match tense to the time marker and keep a future condition explicit."
+    ],
+    [
+      "Explain a complex choice",
+      "Why choose the smaller option? It costs less and is easier to support. Although it has fewer features, it meets the main need.",
+      "The smaller option meets the main need with less cost.",
+      "Although it ___ fewer features, it meets the need.",
+      "has",
+      "Although it has fewer features, but it meets the need.",
+      "Although it has fewer features, it meets the need.",
+      "Although already signals contrast, so do not pair it with but in the same sentence."
+    ],
+    [
+      "Recover during a conversation",
+      "What does dependency mean here? It means we cannot start testing until the design is approved.",
+      "Testing must wait for design approval.",
+      "We cannot start testing ___ the design is approved.",
+      "until",
+      "What means dependency here?",
+      "What does dependency mean here?",
+      "For a present-simple question, use does + subject + mean. Until marks the required waiting point."
+    ],
+    [
+      "Lead a short decision",
+      "Which option should we choose? First, compare the risks. Then, choose an owner. Finally, confirm the deadline together.",
+      "The group should compare risks before selecting an owner.",
+      "Finally, ___ the deadline together.",
+      "confirm",
+      "We should to compare the risks.",
+      "We should compare the risks.",
+      "Should takes a base verb. A structured decision ends with a clear owner and deadline."
+    ],
+    [
+      "Reflect and plan forward",
+      "What will you keep practicing? I will practice asking clear questions and giving short updates. I can now explain a blocker more clearly.",
+      "The speaker plans to practice questions and updates.",
+      "I will practice ___ clear questions.",
+      "asking",
+      "I will practice to ask clear questions.",
+      "I will practice asking clear questions.",
+      "Practice takes an -ing form. Reflect on observable skills rather than claiming a guaranteed language level."
+    ]
+  ],
+  "distractors": [
+    [
+      "The speaker designs the budget alone.",
+      "The speaker only checks reports on Fridays."
+    ],
+    [
+      "The report is checked every morning.",
+      "The designer checks the report on Monday."
+    ],
+    [
+      "The designer never attends meetings.",
+      "The designer attends every Friday."
+    ],
+    [
+      "The team must send the design before reviewing it.",
+      "Approval has already been given."
+    ],
+    [
+      "The speaker works alone.",
+      "The speaker coordinates three designers."
+    ],
+    [
+      "The plan is updated after the weekly meeting.",
+      "The plan is updated only on Fridays."
+    ],
+    [
+      "The speaker has already finished checking.",
+      "The speaker is preparing a budget instead."
+    ],
+    [
+      "The speaker always works with the team.",
+      "The speaker is working alone today."
+    ],
+    [
+      "The team is already testing the prototype.",
+      "The designs are finished and approved."
+    ],
+    [
+      "The team needs no further decisions.",
+      "The options were approved yesterday."
+    ],
+    [
+      "The summary will be finished tomorrow.",
+      "The summary was finished after lunch."
+    ],
+    [
+      "The team approved the budget.",
+      "The team rejected any further information."
+    ],
+    [
+      "The report is still being discussed in a meeting.",
+      "The speaker cannot identify the report."
+    ],
+    [
+      "Approval has already arrived.",
+      "The speaker is working on a design review."
+    ],
+    [
+      "The team expanded the scope.",
+      "The team chose the first option without discussion."
+    ],
+    [
+      "The release is delayed because the budget increased.",
+      "The test is complete and the release can proceed."
+    ],
+    [
+      "Both the design and budget are ready.",
+      "Neither the design nor budget is ready."
+    ],
+    [
+      "The first step is to agree on an owner.",
+      "The final step is to read the summary."
+    ],
+    [
+      "The draft should be sent today.",
+      "The speaker asks for both versions today."
+    ],
+    [
+      "The prototype is ready for public release.",
+      "The prototype cannot be reviewed internally."
+    ],
+    [
+      "The figures were checked yesterday.",
+      "The draft will be finished tomorrow."
+    ],
+    [
+      "Testing has started despite the budget issue.",
+      "The team is waiting for a design, not approval."
+    ],
+    [
+      "The security review is scheduled for Tuesday.",
+      "The launch has no remaining dependency."
+    ],
+    [
+      "The team must ask for approval before finalizing designs.",
+      "The designs were approved yesterday."
+    ],
+    [
+      "The issue is already closed.",
+      "The speaker will start working after Friday."
+    ],
+    [
+      "Testing was completed last week.",
+      "The team will test with thirty volunteers."
+    ],
+    [
+      "The speaker asks someone else to take notes.",
+      "The discussion must wait until tomorrow."
+    ],
+    [
+      "The meeting time is not arranged yet.",
+      "The meeting is at two tomorrow."
+    ],
+    [
+      "The final checked version is ready Friday.",
+      "The draft needs another week."
+    ],
+    [
+      "The team will launch Monday regardless of results.",
+      "The team will cancel the review on Monday."
+    ],
+    [
+      "The meeting starts by assigning risk owners.",
+      "The goal has already been confirmed by everyone."
+    ],
+    [
+      "The review starts at ten.",
+      "The coordinator will lead the review tomorrow."
+    ],
+    [
+      "A completely new design is requested.",
+      "The speaker agrees without asking for clarification."
+    ],
+    [
+      "The speaker wants to end the meeting immediately.",
+      "The speaker asks to change the action date."
+    ],
+    [
+      "The team agreed to expand the scope.",
+      "The revised plan is due Friday."
+    ],
+    [
+      "The report cannot be sent before next week.",
+      "The final figures are needed tomorrow morning."
+    ],
+    [
+      "The late review will delay testing by two weeks.",
+      "The review has no effect on testing."
+    ],
+    [
+      "Testing already started on Monday.",
+      "Approval arrived before the request was sent."
+    ],
+    [
+      "The new icon should be finished first.",
+      "Both tasks prevent testing equally."
+    ],
+    [
+      "The extra screen saves two days.",
+      "The decision can wait until next month."
+    ],
+    [
+      "The summary needs a full rewrite by Monday.",
+      "The reviewer should ignore missing costs."
+    ],
+    [
+      "The update should remove the summary.",
+      "Only dates should be added to the risks."
+    ],
+    [
+      "The supplier delay is already confirmed.",
+      "The supplier will definitely deliver early."
+    ],
+    [
+      "The speaker proposes skipping all testing.",
+      "The team will wait until release to check the sample."
+    ],
+    [
+      "Support is ready to release immediately.",
+      "The team wants to delay all feedback."
+    ],
+    [
+      "The checked version will be ready tomorrow.",
+      "The draft needs two more weeks."
+    ],
+    [
+      "Friday is impossible even with less scope.",
+      "The optional chart is required for Friday."
+    ],
+    [
+      "The speaker sees no benefit in the date.",
+      "The speaker wants to remove all testing time."
+    ],
+    [
+      "All features will be delivered on Friday.",
+      "The core screens are due next Tuesday."
+    ],
+    [
+      "The deadline was met without changes.",
+      "The team will stop sending progress updates."
+    ],
+    [
+      "The speaker only checked design details.",
+      "The speaker worked alone without planning."
+    ],
+    [
+      "The speaker increased scope after the delay.",
+      "The late review required no action."
+    ],
+    [
+      "The team missed the date and got no feedback.",
+      "Feedback was collected before any features existed."
+    ],
+    [
+      "The speaker worked all weekend.",
+      "The speaker stayed inside and did not go out."
+    ],
+    [
+      "The candidate asks only about the final interview date.",
+      "The candidate asks how to avoid early responsibilities."
+    ],
+    [
+      "The release already happened yesterday.",
+      "The release is guaranteed even if tests fail."
+    ],
+    [
+      "The smaller option has more features.",
+      "The smaller option fails to meet the main need."
+    ],
+    [
+      "Testing can start before design approval.",
+      "Dependency means testing is already finished."
+    ],
+    [
+      "The group should choose the owner before comparing risks.",
+      "The group should confirm the deadline first."
+    ],
+    [
+      "The speaker plans to stop practicing questions.",
+      "The speaker says blockers are still impossible to explain."
+    ]
+  ]
+}
