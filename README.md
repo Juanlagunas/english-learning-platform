@@ -1,6 +1,6 @@
 # Inglés Lagunas
 
-A free, static English practice app for A2–B1 learning, built with React, TypeScript, and Vite. All workplace scenarios use fictional **Project Orion**. No account, API key, paid service, backend, or AI grading.
+A free, static English practice app for A2–B1 learning, built with React, TypeScript, and Vite. All workplace scenarios use fictional **Project Orion**. No account, API key, paid service, backend, or AI grading. Neural voice synthesis runs locally and is separate from answer evaluation.
 
 ## Practice
 
@@ -40,7 +40,9 @@ npm run build
 - `src/connectors.ts`: structured connector reference and practice examples.
 - `src/types.ts`: content and versioned progress schema.
 - `src/engine.ts`: deterministic normalization/grading, Leitner-inspired scheduling, progress validation/storage, metrics, and tutor export.
-- `src/Audio.tsx`: browser speech synthesis, English voice discovery and voice-change events, playback and rate selection, and failure notices.
+- `src/Audio.tsx`: Kokoro playback and five-voice comparison, browser speech backup, subtitles, saved preferences, and failure notices.
+- `src/kokoro.worker.ts` / `src/kokoroClient.ts`: lazy local synthesis in a dedicated worker, WebGPU acceleration with single-thread WASM fallback for Pages compatibility, cancellation and a small in-memory replay cache.
+- `src/neuralVoices.ts`: five curated US voice IDs and browser-local engine/voice preferences.
 - `src/Exercise.tsx`, `src/Practice.tsx`: accessible exercise, lesson, speaking, and assessment flows.
 - `src/App.tsx`: dashboard, learning path, language reference, review queue, progress and data portability.
 - `tests/engine.test.ts` and `tests/learning.test.ts`: curriculum contract, grading, scheduler, malformed imports, persistence, honest metrics, correction state transitions, and voice preference/ranking.
@@ -55,13 +57,21 @@ Progress is in `localStorage` under `compass-progress-v1`, schema version 1. It 
 
 Tutor text export includes recent answers and weak topics. Share it manually only when you choose. Use fictional details; do not enter confidential or personal information. The app has no analytics, ads, login, cookies, microphone access, or application API calls. Browser-provided speech voices may use their provider’s network service. GitHub, as hosting provider, may retain its normal request logs. Optional clipboard actions need browser support and have a selectable-text fallback.
 
-Audio is **browser-generated speech, not a human recording**. Available English voices depend on browser/device configuration. Available en-US voices are prioritized with name hints for Natural/Neural/Enhanced/Premium and Google voices; this ranking is a heuristic, not a measured quality claim. Expand Voice, preview a sample, then apply a choice. The voice URI is saved separately under `compass-english-voice` in localStorage and reused across lessons and reloads. Unavailable saved voices fall back with a visible notice. Speed defaults to 1.0 with 0.85 as the alternative; speech requires a user click. English subtitles are hidden by default. Show Subtitles / Hide Subtitles toggles the exact full utterance without word-level synchronization; the preference is saved under `compass-show-subtitles` and reused across lesson audio. Voice previews show their own sample sentence as subtitles. Spanish translation remains independent and off until requested. During mastery, opening subtitles resets the retrieval streak. If audio is unsupported or silent, Show Subtitles provides the text fallback. Some voices require network connectivity. Audio pronunciation and intelligibility should also be checked on your own device. No microphone recording or speech recognition is required or implemented.
+Audio defaults to **Kokoro neural speech generated on the learner's device**, with Sarah selected, following the learner’s preference. Five US English voices can be compared with the same sample: Heart, Bella, Sarah (female), Michael and Puck (male). The default Sarah follows the learner’s stated listening preference. Heart and Bella are other options with favorable upstream quality ratings; no voice is claimed to improve learning outcomes automatically. Gender is not treated as a pedagogical advantage. The learner can preview before selecting and occasionally compare another speaker.
+
+The model is downloaded only after Play or a preview is clicked: approximately 330 MB for the accelerated fp32 model or 90 MB for the compatible q8 model, plus runtime and small voice files. Downloads come from Hugging Face and the runtime's public CDN; the browser can cache them. Text is processed in a Web Worker on the device and is not sent to a synthesis API. Voice generation prefers WebGPU when an adapter is available, using the fp32 precision recommended by Kokoro.js. Devices without WebGPU use single-thread WASM q8 because GitHub Pages cannot set cross-origin isolation headers. A failed accelerated model load is shown with the browser backup option; no second large model is downloaded silently. The first request can be slow; performance and cache retention depend on device/browser. A small session-memory cache speeds repeated playback of the exact same text, voice and speed. Generated WAV data exists as local blobs and is never hosted or uploaded.
+
+The **Browser voice (backup)** engine remains available when the model cannot load or the device is too slow; a failure is displayed rather than silently switching engines. Browser speech may use the selected voice provider's network service. Neither engine is a human recording. New preferences are stored under `lagunas-kokoro-voice` and `lagunas-speech-engine`; existing browser voice preference remains under `compass-english-voice`. Playback defaults to 1.0 with 0.85 as the alternative, starts from a user click, and can be stopped. Stopping suppresses the pending result; an already-running WASM computation may finish in the background. If a browser blocks delayed autoplay, a Play ready audio button provides another direct gesture.
+
+English subtitles are hidden by default. Show Subtitles / Hide Subtitles toggles the exact full utterance without word-level synchronization; the preference is saved under `compass-show-subtitles` and reused across lessons. Voice previews show their own sample sentence. Spanish translation remains independent. Opening subtitles during mastery resets the retrieval streak. Text fallback works even if neither speech engine is available. No microphone or speech recognition is required.
+
+References: [Kokoro.js usage and voice metadata](https://github.com/hexgrad/kokoro/tree/main/kokoro.js), [model card and downloadable assets](https://huggingface.co/onnx-community/Kokoro-82M-v1.0-ONNX). The package and model declare Apache-2.0 licensing.
 
 All curriculum ships with the initial JavaScript bundle, so navigation and practice continue without network requests after loading. There is no service worker: a new offline tab/reload is not guaranteed to work. Practice time counts visible, recently active lesson time (up to two minutes since interaction), not the selected session duration; assessment/review browsing time is not counted. The current minute can be lost on abrupt tab closure. Weekly goal days require 15 measured minutes; the suggested target is five 30-minute days. Brief practice is still saved. A streak is informational and never locks content.
 
 ## GitHub Pages deployment
 
-The repository is public. `vite.config.ts` sets base to `/english-learning-platform/`. Navigation is in-app state, with no nested paths to cause refresh 404s. `.github/workflows/deploy.yml` installs from the lockfile, typechecks, lints, runs tests, builds, and deploys using official GitHub Pages actions and `contents: read`, `pages: write`, `id-token: write` permissions. It runs on pushes to `main` and manual workflow dispatch.
+The repository is public. `vite.config.ts` sets base to `/english-learning-platform/`. Navigation is in-app state, with no nested paths to cause refresh 404s. `.github/workflows/deploy.yml` installs from the lockfile, audits production dependencies, typechecks, lints, runs tests, builds, and deploys using official GitHub Pages actions and `contents: read`, `pages: write`, `id-token: write` permissions. It runs on pushes to `main` and manual workflow dispatch.
 
 In repository **Settings → Pages → Build and deployment → Source**, select **GitHub Actions** if not already configured. No custom token or repository secret is needed. Check the workflow's deployment URL after successful deployment; configuration alone does not prove the site is live.
 
@@ -78,3 +88,5 @@ The header displays only **Inglés Lagunas**, with a local illustrated avatar an
 Generation prompt: “Small square avatar icon for Inglés Lagunas. Friendly illustrated young boy with warm light-medium brown skin, dark brown eyes, tightly curled black hair, gentle smile, and dark green shirt. Centered head-and-shoulders portrait, clean rounded forms, soft cream background. No text, compass, symbols, watermark, or extra objects.”
 
 Legacy `compass-*` browser storage keys are deliberately retained so renaming the platform does not discard existing progress, voice, or subtitle preferences.
+
+The `sharp` dependency brought by Transformers.js is overridden to patched 0.35.5; browser speech uses the web export where sharp is ignored. The workflow checks production dependencies with `npm audit --omit=dev --audit-level=high` before deployment.

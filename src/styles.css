@@ -1559,3 +1559,10 @@ th small {
 @media(max-width:1120px){.brand{font-size:20px;}.brand-avatar{width:38px;height:38px;}}
 @media(max-width:850px){.brand{font-size:18px;}.brand-avatar{width:35px;height:35px;}}
 @media(max-width:600px){.brand{font-size:25px;}.brand-avatar{width:44px;height:44px;}}
+.neural-voices {display:grid;gap:9px;margin:15px 0;}
+.neural-voice {display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px;border:1px solid #d8e2d0;border-radius:8px;background:#fafcf7;}
+.neural-voice.chosen {border-color:#638352;background:#e8f0e0;}
+.neural-voice strong {font-size:14px;}
+.neural-voice small {font-size:11px;}
+.neural-voice .button-row {flex-shrink:0;margin:0;gap:7px;}
+@media(max-width:600px){.neural-voice{align-items:flex-start;flex-direction:column;gap:10px}.neural-voice .button-row{width:100%;}.neural-voice .button-row button{flex:1;}}
