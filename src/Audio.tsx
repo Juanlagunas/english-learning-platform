@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Volume2, Square } from 'lucide-react';
+import {readSubtitlesPreference,saveSubtitlesPreference} from './subtitles';
 import { englishVoices, preferredVoice, readVoicePreference, saveVoicePreference, VOICE_SAMPLE } from './voices';
 export function Audio({ text, translation, onHelp }: {
     text: string;
@@ -13,11 +14,16 @@ export function Audio({ text, translation, onHelp }: {
     const [rate, setRate] = useState('1');
     const [status, setStatus] = useState('');
     const [preferenceStatus, setPreferenceStatus] = useState('');
-    const [transcript, setTranscript] = useState(false);
+    const [transcript, setTranscript] = useState(readSubtitlesPreference);
+    const [samplePlaying,setSamplePlaying]=useState(false);
+    const [subtitleStatus,setSubtitleStatus]=useState('');
+    const helpCallback=useRef(onHelp);helpCallback.current=onHelp;
+    useEffect(()=>{if(transcript)helpCallback.current?.('transcript');},[transcript]);
+    useEffect(()=>{const sync=()=>setTranscript(readSubtitlesPreference());window.addEventListener('compass-subtitles-changed',sync);return()=>window.removeEventListener('compass-subtitles-changed',sync);},[]);
     const [translated, setTranslated] = useState(false);
     useEffect(() => { if (!supported)
         return; const update = () => setVoices(englishVoices(speechSynthesis.getVoices())); const sync = () => { const preference = readVoicePreference(); setSaved(preference); setCandidate(preference); }; update(); speechSynthesis.addEventListener('voiceschanged', update); window.addEventListener('compass-voice-changed', sync); return () => { speechSynthesis.removeEventListener('voiceschanged', update); window.removeEventListener('compass-voice-changed', sync); speechSynthesis.cancel(); }; }, [supported]);
-    function play(sample = false) { if (!supported)
+    function play(sample = false) { setSamplePlaying(sample); if (!supported)
         return; speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(sample ? VOICE_SAMPLE : text); u.lang = 'en-US'; u.rate = Number(rate); const selected = preferredVoice(voices, sample ? candidate : saved); if (selected) {
         u.voice = selected;
         u.lang = selected.lang;
@@ -29,7 +35,6 @@ export function Audio({ text, translation, onHelp }: {
  {supported && <details className="voice-picker"><summary>Voice: {current?.name ?? 'browser default'}</summary><label>Available English voices<select value={selected?.voiceURI ?? ''} onChange={e => { setCandidate(e.target.value); setPreferenceStatus('Preview the sample, then choose Use this voice.'); }}>{voices.length === 0 && <option value="">No English voice available</option>}{voices.map((v, i) => <option key={v.voiceURI} value={v.voiceURI}>{v.name} · {v.lang}{i === 0 ? ' · recommended' : ''}</option>)}</select></label><div className="button-row"><button disabled={!selected} onClick={() => play(true)}>Preview voice sample</button><button disabled={!selected} onClick={() => { if (!selected)
         return; setSaved(selected.voiceURI); setCandidate(selected.voiceURI); const persisted = saveVoicePreference(selected.voiceURI); if (persisted)
         window.dispatchEvent(new Event('compass-voice-changed')); setPreferenceStatus(persisted ? 'Voice saved for this browser.' : 'Voice applied for now. Browser storage is unavailable, so it cannot be saved.'); }}>Use this voice</button></div><p role="status" className="muted">{preferenceStatus}</p><small>US English voices are listed first. “Recommended” uses voice names as hints; preview to choose what sounds best. Naturalness depends on your browser and installed voices.</small></details>}
- <small>Browser-generated speech. Some voices need an internet connection. No paid service or microphone is used.</small>{(!supported || voices.length === 0 || missing) && <p role="status">{!supported ? 'Speech is unavailable here. Use the text alternative or try another browser.' : missing ? 'Your saved voice is unavailable on this device. Using the best available English voice; you can choose another.' : 'No suitable English voice is listed. Install an English system voice or use the text alternative.'}</p>}<span role="status" className="audio-status">{status}</span><div className="button-row"><button className="text-button" aria-expanded={transcript} onClick={() => { if (!transcript)
-        onHelp?.('transcript'); setTranscript(!transcript); }}>{transcript ? 'Hide transcript' : 'Show transcript / text fallback'}</button>{translation && <button className="text-button" aria-expanded={translated} onClick={() => { if (!translated)
-        onHelp?.('translation'); setTranslated(!translated); }}>{translated ? 'Hide Spanish translation' : 'Show Spanish translation'}</button>}</div>{transcript && <p className="transcript">{text}</p>}{translated && <p className="spanish">{translation}</p>}</div>;
+ <small>Browser-generated speech. Some voices need an internet connection. No paid service or microphone is used.</small>{(!supported || voices.length === 0 || missing) && <p role="status">{!supported ? 'Speech is unavailable here. Use the text alternative or try another browser.' : missing ? 'Your saved voice is unavailable on this device. Using the best available English voice; you can choose another.' : 'No suitable English voice is listed. Install an English system voice or use the text alternative.'}</p>}<span role="status" className="audio-status">{status}</span><div className="button-row"><button className="text-button" aria-expanded={transcript} onClick={()=>{const show=!transcript;setTranscript(show);const persisted=saveSubtitlesPreference(show);if(persisted)window.dispatchEvent(new Event('compass-subtitles-changed'));setSubtitleStatus(persisted?'':'Subtitles changed for now. Browser storage is unavailable, so the preference cannot be saved.');}}>{transcript?'Hide Subtitles':'Show Subtitles'}</button>{translation && <button className="text-button" aria-expanded={translated} onClick={() => { if (!translated)
+        onHelp?.('translation'); setTranslated(!translated); }}>{translated ? 'Hide Spanish translation' : 'Show Spanish translation'}</button>}</div>{subtitleStatus&&<p role="status" className="muted">{subtitleStatus}</p>}{transcript && <p className="transcript" aria-label="English subtitles">{samplePlaying?VOICE_SAMPLE:text}</p>}{translated && <p className="spanish">{translation}</p>}</div>;
 }
