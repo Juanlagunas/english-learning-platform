@@ -1,4 +1,4 @@
-# Compass — English for your everyday work
+# Inglés Lagunas
 
 A free, static English practice app for A2–B1 learning, built with React, TypeScript, and Vite. All workplace scenarios use fictional **Project Orion**. No account, API key, paid service, backend, or AI grading.
 
@@ -70,3 +70,11 @@ Technical references: [Vite's GitHub Pages deployment guide](https://vite.dev/gu
 ## Verification scope
 
 Automated tests check content completeness and core logic; they do not certify English proficiency, natural voice quality, or every browser. The repository workflow is the repeatable gate for code changes. See `VERIFICATION.md` for the observed release checks and browser limitations.
+
+## Brand asset
+
+The header displays only **Inglés Lagunas**, with a local illustrated avatar and PNG favicon. The fictional boy has light-medium brown skin and curly black hair. The source image was created with the built-in image generation tool, then copied and resized into `public/ingles-lagunas-avatar.png` (256 px) and `public/ingles-lagunas-favicon.png` (64 px). No image API is used by the app.
+
+Generation prompt: “Small square avatar icon for Inglés Lagunas. Friendly illustrated young boy with warm light-medium brown skin, dark brown eyes, tightly curled black hair, gentle smile, and dark green shirt. Centered head-and-shoulders portrait, clean rounded forms, soft cream background. No text, compass, symbols, watermark, or extra objects.”
+
+Legacy `compass-*` browser storage keys are deliberately retained so renaming the platform does not discard existing progress, voice, or subtitle preferences.
