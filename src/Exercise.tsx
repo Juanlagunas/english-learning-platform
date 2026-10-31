@@ -23,7 +23,7 @@ export function Exercise({ task, spanish, onDone, initial = '', onDraft }: {
     const context = useContext(LearningContext);
     const [local, setLocal] = useState<LearningState>(initialLearningState);
     const state = context?.states[task.id] ?? local;
-    const [answer, setAnswer] = useState(()=>draftValue(context?.drafts??{},task.id,state.answer||initial));
+    const [answer, setAnswer] = useState(()=>{const saved=draftValue(context?.drafts??{},task.id,state.answer||initial);const available=state.stage==='TRANSFER'?(task.transfer??task):task;return available.options&&available.kind!=='reorder'&&!available.options.includes(saved)?'':saved;});
     const [compared, setCompared] = useState(false);
     const [explain, setExplain] = useState(false);
     const [es, setEs] = useState(false);

@@ -10,3 +10,9 @@ it('keeps saved free writing self-assessed and editable without a mastery claim'
  const html=renderToStaticMarkup(createElement(LearningContext.Provider,{value:{states:{[task.id]:{...initialLearningState(),stage:'REVIEW',feedback:'Self-assessment saved.'}},dispatch:()=>{}}},createElement(Exercise,{task,spanish:false,initial:'My own answer.',onDone:()=>{}})));
  expect(html).toContain('Your response');expect(html).toContain('Compare with model');expect(html).not.toContain('transfer accepted');expect(html).not.toContain('Mastery streak completed');
 });
+
+it('does not submit an invisible legacy choice when the curriculum options changed',()=>{
+ const task=lessons[1].tasks[0];const oldAnswer='The report is checked each Friday.';
+ const html=renderToStaticMarkup(createElement(LearningContext.Provider,{value:{states:{[task.id]:initialLearningState()},drafts:{[task.id]:oldAnswer},dispatch:()=>{}}},createElement(Exercise,{task,spanish:false,onDone:()=>{}})));
+ expect(html).toMatch(/<button[^>]*disabled=""[^>]*>Check answer<\/button>/);expect(html).not.toContain('checked=""');
+});

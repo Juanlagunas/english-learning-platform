@@ -28,8 +28,10 @@ La transferencia general definitiva pasta/almuerzo también terminó con Sarah (
 
 ## Checks
 
-Medido en la última ejecución conjunta: `npm run typecheck` correcto; `npm run lint` correcto; `npm test` **67/67** en ocho archivos; `npm run build` correcto (bundle principal `index-DiZdNyKu.js`). `git diff --check` correcto. OpenSpec validó cambio y contrato previo estrictamente; prerrequisitos Spec Kit presentes. No se añadieron dependencias ni cambios al workflow, backend, APIs, servicios o pantallas.
+Medido en la última ejecución conjunta: `npm run typecheck` correcto; `npm run lint` correcto; `npm test` **68/68** en ocho archivos; `npm run build` correcto (bundle principal `index-CzbZgZVu.js`). `git diff --check` correcto. OpenSpec validó cambio y contrato previo estrictamente; prerrequisitos Spec Kit presentes. No se añadieron dependencias ni cambios al workflow, backend, APIs, servicios o pantallas.
 
 ## Publicación
 
-Pendiente de registrar commit, workflow y lectura de la URL pública. El build local no se confunde con un despliegue.
+Primera publicación medida: commit `8c8cce82367010dbff8b757b8268db41513d0643`, [workflow 41229301208](https://github.com/Juanlagunas/english-learning-platform/actions/runs/41229301208), build/checks/deploy correctos. La URL pública cargó el currículo nuevo y conservó 1/60, 59 pendientes y 1.7%. El diálogo técnico nuevo terminó con Sarah, 4.85 s y readyState 4.
+
+Esa lectura encontró una respuesta múltiple antigua que ya no era una opción visible pero dejaba activo Check answer. Se corrigió la inicialización del control: el borrador histórico se conserva en los datos, mientras la vista exige elegir una opción actual. La prueba de regresión confirma el botón deshabilitado sin opción visible seleccionada. Se vuelven a ejecutar los gates y se verifica el despliegue de esta corrección antes de cerrar.
