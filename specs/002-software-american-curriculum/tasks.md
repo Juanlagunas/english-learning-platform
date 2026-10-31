@@ -4,4 +4,4 @@
 - [x] T003 Adaptar ejemplos de conectores, oralidad/escritura y transferencia para ambos contextos sin UI nueva.
 - [x] T004 Implementar revisión editorial y reconciliación idempotente; conservar historial, borradores y completadas; excluir intentos antiguos de mediciones nuevas.
 - [x] T005 Ejecutar pruebas de contenido/migración, typecheck, lint, tests, build y validación OpenSpec; registrar evidencia de navegador y convergencia.
-- [ ] T006 Publicar en Pages, leer versión pública, archivar contrato y entregar resumen.
+- [x] T006 Publicar en Pages, leer versión pública, archivar contrato y entregar resumen.

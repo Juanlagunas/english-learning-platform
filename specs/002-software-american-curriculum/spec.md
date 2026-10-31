@@ -2,7 +2,7 @@
 
 Fecha: 2026-10-31. Rama: `002-software-american-curriculum`.
 
-El contrato normativo SCUR-001–SCUR-003 está en [OpenSpec](../../openspec/changes/software-american-curriculum/specs/software-curriculum/spec.md). Se conserva el contrato de estabilidad anterior.
+El contrato normativo SCUR-001–SCUR-003 está en [OpenSpec](../../openspec/specs/software-curriculum/spec.md). Se conserva el contrato de estabilidad anterior.
 
 Historias: (P1) practicar lenguaje tecnológico natural sin sobrecargar el nivel inicial; (P1) actualizar sin perder historial o dejar dominios falsos; (P2) conservar fluidez general con mezcla 70/30.
 
