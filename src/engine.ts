@@ -13,11 +13,12 @@ export function recordAttempt(p: Progress, task: Task, answer: string, self?: bo
     const correct = grade(task, answer);
     const reviewCorrect = correct ?? self ?? false;
     const attempt: Attempt = { taskId: task.id, answer, correct, at: now.toISOString(), topic: task.topic };
-    return { ...p, attempts: [...p.attempts, attempt].slice(-10000), reviews: { ...p.reviews, [task.id]: nextReview(task.id, reviewCorrect, p.reviews[task.id], now, p.reviewIntervals) }, exerciseStates: task.kind === 'free' ? { ...p.exerciseStates, [task.id]: { ...initialLearningState(), stage: 'REVIEW', feedback: 'Self-assessment saved. No automatic writing grade.', history: [{ answer, correct: null, at: now.toISOString(), stage: 'REVIEW' }] } } : p.exerciseStates, drafts: { ...p.drafts, [task.id]: answer } };
+    return { ...p, attempts: [...p.attempts, attempt].slice(-10000), reviews: { ...p.reviews, [task.id]: nextReview(task.id, reviewCorrect, p.reviews[task.id], now, p.reviewIntervals) }, exerciseStates: task.kind === 'free' ? { ...p.exerciseStates, [task.id]: { ...initialLearningState(), stage: 'REVIEW', contentRevision:task.contentRevision, feedback: 'Self-assessment saved. No automatic writing grade.', history: [{ answer, correct: null, at: now.toISOString(), stage: 'REVIEW', contentRevision:task.contentRevision }] } } : p.exerciseStates, drafts: { ...p.drafts, [task.id]: answer } };
 }
 export function recordLearningEvent(p: Progress, task: Task, event: LearningEvent, now = new Date()): Progress {
     const previous = p.exerciseStates[task.id] ?? initialLearningState();
-    const state = transition(previous, event, task, now);
+    const transitioned = transition(previous, event, task, now);
+    const state=transitioned===previous?previous:{...transitioned,contentRevision:task.contentRevision};
     if(state===previous)return p;
     let result = { ...p, exerciseStates: { ...p.exerciseStates, [task.id]: state } };
     if(state.answer!==previous.answer||['beginMastery','restart','explanation'].includes(event.type))result={...result,drafts:{...p.drafts,[task.id]:state.answer}};
@@ -63,7 +64,7 @@ export function parseProgress(raw: string): Progress {
     if (!Array.isArray(p.reviewIntervals) || p.reviewIntervals.length !== 3 || p.reviewIntervals.some(x => !Number.isInteger(x) || !count(x, 30) || Number(x) < 1))
         throw new Error('Invalid review intervals.');
     const stages = ['INITIAL_ATTEMPTS', 'RETEACH', 'MASTERY', 'TRANSFER', 'REVIEW'];
-    if (!isRecord(p.exerciseStates) || Object.values(p.exerciseStates).some(s => !isRecord(s) || !stages.includes(s.stage as string) || !Number.isInteger(s.failures) || !count(s.failures, 3) || !Number.isInteger(s.streak) || !count(s.streak, 3) || !string(s.answer) || !string(s.feedback) || typeof s.uncertain !== 'boolean' || typeof s.deferred !== 'boolean' || s.masteredAt !== undefined && !validDate(s.masteredAt) || !Array.isArray(s.history) || s.history.length > 500 || s.history.some(h => !isRecord(h) || !string(h.answer) || !validDate(h.at) || !stages.includes(h.stage as string) || ![true, false, null].includes(h.correct as boolean | null)) || !Array.isArray(s.hints) || s.hints.length > 500 || s.hints.some(h => !isRecord(h) || !validDate(h.at) || !['hint', 'explanation', 'transcript', 'translation'].includes(h.kind as string))))
+    if (!isRecord(p.exerciseStates) || Object.values(p.exerciseStates).some(s => !isRecord(s) || !stages.includes(s.stage as string) || s.contentRevision!==undefined&&!string(s.contentRevision,100) || !Number.isInteger(s.failures) || !count(s.failures, 3) || !Number.isInteger(s.streak) || !count(s.streak, 3) || !string(s.answer) || !string(s.feedback) || typeof s.uncertain !== 'boolean' || typeof s.deferred !== 'boolean' || s.masteredAt !== undefined && !validDate(s.masteredAt) || !Array.isArray(s.history) || s.history.length > 500 || s.history.some(h => !isRecord(h) || !string(h.answer) || !validDate(h.at) || !stages.includes(h.stage as string) || h.contentRevision!==undefined&&!string(h.contentRevision,100) || ![true, false, null].includes(h.correct as boolean | null)) || !Array.isArray(s.hints) || s.hints.length > 500 || s.hints.some(h => !isRecord(h) || !validDate(h.at) || !['hint', 'explanation', 'transcript', 'translation'].includes(h.kind as string))))
         throw new Error('Invalid correction state or hint history.');
     if(p.lessonProgress===undefined)p.lessonProgress={};
     if(p.assessmentProgress===undefined)p.assessmentProgress={};

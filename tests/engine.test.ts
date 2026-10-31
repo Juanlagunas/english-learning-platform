@@ -52,7 +52,7 @@ describe('curriculum contract', () => {
     });
 });
 describe('grading', () => {
-    it('accepts case punctuation spacing and common contraction variants', () => { expect(normalize(' I’m READY! ')).toBe('i am ready'); expect(normalize("We can't start.")).toBe(normalize('We cannot start')); expect(grade(lessons[0].tasks[4], 'she COORDINATES the design team!')).toBe(true); });
+    it('accepts case punctuation spacing and common contraction variants', () => { expect(normalize(' I’m READY! ')).toBe('i am ready'); expect(normalize("We can't start.")).toBe(normalize('We cannot start')); expect(grade(lessons[0].tasks[4], 'she COORDINATES the software team!')).toBe(true); });
     it('does not equate a wrong auxiliary or tense', () => { expect(grade(lessons[1].tasks[4], 'He need a clear plan.')).toBe(false); expect(grade(lessons[11].tasks[1], 'approved')).toBe(false); });
 });
 describe('review scheduler', () => {

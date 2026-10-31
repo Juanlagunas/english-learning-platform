@@ -20,7 +20,7 @@ export function transition(state: LearningState, event: LearningEvent, task: Tas
         return state;
     const active = state.stage === 'TRANSFER' ? (task.transfer ?? task) : task;
     const correct = grade(active, event.answer);
-    const next = { ...state, answer: event.answer, uncertain: correct === null, deferred: false, history: [...state.history, { answer: event.answer, correct, at, stage: state.stage }].slice(-500) };
+    const next = { ...state, answer: event.answer, uncertain: correct === null, deferred: false, history: [...state.history, { answer: event.answer, correct, at, stage: state.stage, contentRevision:task.contentRevision }].slice(-500) };
     if (correct === null)
         return { ...next, streak:state.stage==='MASTERY'?0:state.streak, feedback: 'I cannot verify this alternative offline. It may be valid. Compare the rubric or ask a tutor; it is not counted as an error or mastery.' };
     if (state.stage === 'TRANSFER')

@@ -1,0 +1,509 @@
+{
+  "version": 1,
+  "started": "2026-10-30T23:43:48.405Z",
+  "completed": {
+    "s01": {
+      "at": "2026-10-30T23:45:46.028Z",
+      "seconds": 83,
+      "correct": 4,
+      "total": 4
+    }
+  },
+  "attempts": [
+    {
+      "taskId": "s01-listen",
+      "answer": "The speaker coordinates a team.",
+      "correct": true,
+      "at": "2026-10-30T23:44:21.159Z",
+      "topic": "Listening comprehension"
+    },
+    {
+      "taskId": "s01-listen",
+      "answer": "The speaker coordinates a team.",
+      "correct": true,
+      "at": "2026-10-30T23:44:29.505Z",
+      "topic": "Listening comprehension"
+    },
+    {
+      "taskId": "s01-cloze",
+      "answer": "coordinates",
+      "correct": false,
+      "at": "2026-10-30T23:44:31.031Z",
+      "topic": "Subjects, verbs, and useful introductions"
+    },
+    {
+      "taskId": "s01-cloze",
+      "answer": "coordinates",
+      "correct": false,
+      "at": "2026-10-30T23:44:31.314Z",
+      "topic": "Subjects, verbs, and useful introductions"
+    },
+    {
+      "taskId": "s01-cloze",
+      "answer": "coordinates",
+      "correct": false,
+      "at": "2026-10-30T23:44:31.618Z",
+      "topic": "Subjects, verbs, and useful introductions"
+    },
+    {
+      "taskId": "s01-cloze",
+      "answer": "coordinate",
+      "correct": true,
+      "at": "2026-10-30T23:44:45.533Z",
+      "topic": "Subjects, verbs, and useful introductions"
+    },
+    {
+      "taskId": "s01-cloze",
+      "answer": "coordinate",
+      "correct": true,
+      "at": "2026-10-30T23:44:45.840Z",
+      "topic": "Subjects, verbs, and useful introductions"
+    },
+    {
+      "taskId": "s01-cloze",
+      "answer": "coordinates",
+      "correct": false,
+      "at": "2026-10-30T23:44:46.148Z",
+      "topic": "Subjects, verbs, and useful introductions"
+    },
+    {
+      "taskId": "s01-cloze",
+      "answer": "coordinate",
+      "correct": true,
+      "at": "2026-10-30T23:44:46.455Z",
+      "topic": "Subjects, verbs, and useful introductions"
+    },
+    {
+      "taskId": "s01-cloze",
+      "answer": "coordinate",
+      "correct": true,
+      "at": "2026-10-30T23:45:06.290Z",
+      "topic": "Subjects, verbs, and useful introductions"
+    },
+    {
+      "taskId": "s01-cloze",
+      "answer": "coordinate",
+      "correct": true,
+      "at": "2026-10-30T23:45:06.496Z",
+      "topic": "Subjects, verbs, and useful introductions"
+    },
+    {
+      "taskId": "s01-cloze",
+      "answer": "coordinate",
+      "correct": true,
+      "at": "2026-10-30T23:45:06.814Z",
+      "topic": "Subjects, verbs, and useful introductions"
+    },
+    {
+      "taskId": "s01-reorder",
+      "answer": "I coordinate the design team.",
+      "correct": true,
+      "at": "2026-10-30T23:45:07.419Z",
+      "topic": "Sentence order"
+    },
+    {
+      "taskId": "s01-reorder",
+      "answer": "I coordinate the UX team",
+      "correct": true,
+      "at": "2026-10-30T23:45:14.132Z",
+      "topic": "Sentence order"
+    },
+    {
+      "taskId": "s01-rewrite",
+      "answer": "She coordinate the design team.",
+      "correct": false,
+      "at": "2026-10-30T23:45:15.292Z",
+      "topic": "Subjects, verbs, and useful introductions"
+    },
+    {
+      "taskId": "s01-rewrite",
+      "answer": "She coordinates the design team.",
+      "correct": true,
+      "at": "2026-10-30T23:45:22.111Z",
+      "topic": "Subjects, verbs, and useful introductions"
+    },
+    {
+      "taskId": "s01-rewrite",
+      "answer": "She coordinates the UX team.",
+      "correct": true,
+      "at": "2026-10-30T23:45:22.454Z",
+      "topic": "Subjects, verbs, and useful introductions"
+    },
+    {
+      "taskId": "s01-free",
+      "answer": "I coordinate Project Orion. I review the schedule because our team needs clear priorities. Next, I will confirm the date.",
+      "correct": null,
+      "at": "2026-10-30T23:45:44.217Z",
+      "topic": "Writing"
+    },
+    {
+      "taskId": "s01-listen",
+      "answer": "The speaker designs the budget alone.",
+      "correct": false,
+      "at": "2026-10-30T23:46:18.935Z",
+      "topic": "Listening comprehension"
+    }
+  ],
+  "reviews": {
+    "s01-listen": {
+      "taskId": "s01-listen",
+      "box": 0,
+      "due": "2026-10-31T23:46:18.935Z"
+    },
+    "s01-cloze": {
+      "taskId": "s01-cloze",
+      "box": 1,
+      "due": "2026-10-31T23:45:06.814Z"
+    },
+    "s01-reorder": {
+      "taskId": "s01-reorder",
+      "box": 1,
+      "due": "2026-10-31T23:45:14.132Z"
+    },
+    "s01-connector": {
+      "taskId": "s01-connector",
+      "box": 0,
+      "due": "2026-10-31T23:45:14.672Z"
+    },
+    "s01-rewrite": {
+      "taskId": "s01-rewrite",
+      "box": 1,
+      "due": "2026-10-31T23:45:22.454Z"
+    },
+    "s01-free": {
+      "taskId": "s01-free",
+      "box": 1,
+      "due": "2026-10-31T23:45:44.217Z"
+    }
+  },
+  "assessments": [
+    {
+      "id": "diagnostic",
+      "at": "2026-10-30T23:43:48.405Z",
+      "listening": 50,
+      "grammar": 33,
+      "writing": 67,
+      "speaking": 33
+    }
+  ],
+  "practice": [
+    {
+      "at": "2026-10-30T23:44:57.104Z",
+      "seconds": 36,
+      "lessonId": "s01"
+    },
+    {
+      "at": "2026-10-30T23:45:45.346Z",
+      "seconds": 47,
+      "lessonId": "s01"
+    },
+    {
+      "at": "2026-10-30T23:46:19.210Z",
+      "seconds": 1,
+      "lessonId": "s01"
+    }
+  ],
+  "drafts": {
+    "s01-listen": "The speaker designs the budget alone.",
+    "s01-cloze": "coordinate",
+    "s01-reorder": "I coordinate the UX team",
+    "s01-rewrite": "She coordinates the UX team.",
+    "s01-free": "I coordinate Project Orion. I review the schedule because our team needs clear priorities. Next, I will confirm the date."
+  },
+  "mode": 30,
+  "exerciseStates": {
+    "s01-listen": {
+      "stage": "INITIAL_ATTEMPTS",
+      "failures": 1,
+      "streak": 0,
+      "answer": "The speaker designs the budget alone.",
+      "feedback": "Check the error category: Listening comprehension. Focus on the time and subject.",
+      "uncertain": false,
+      "deferred": false,
+      "history": [
+        {
+          "answer": "The speaker coordinates a team.",
+          "correct": true,
+          "at": "2026-10-30T23:44:21.159Z",
+          "stage": "INITIAL_ATTEMPTS"
+        },
+        {
+          "answer": "The speaker coordinates a team.",
+          "correct": true,
+          "at": "2026-10-30T23:44:29.505Z",
+          "stage": "TRANSFER"
+        },
+        {
+          "answer": "The speaker designs the budget alone.",
+          "correct": false,
+          "at": "2026-10-30T23:46:18.935Z",
+          "stage": "INITIAL_ATTEMPTS"
+        }
+      ],
+      "hints": []
+    },
+    "s01-cloze": {
+      "stage": "REVIEW",
+      "failures": 3,
+      "streak": 3,
+      "answer": "coordinate",
+      "feedback": "Transfer accepted. You used the structure in a different context. Review is scheduled.",
+      "uncertain": false,
+      "deferred": false,
+      "history": [
+        {
+          "answer": "coordinates",
+          "correct": false,
+          "at": "2026-10-30T23:44:31.031Z",
+          "stage": "INITIAL_ATTEMPTS"
+        },
+        {
+          "answer": "coordinates",
+          "correct": false,
+          "at": "2026-10-30T23:44:31.314Z",
+          "stage": "INITIAL_ATTEMPTS"
+        },
+        {
+          "answer": "coordinates",
+          "correct": false,
+          "at": "2026-10-30T23:44:31.618Z",
+          "stage": "INITIAL_ATTEMPTS"
+        },
+        {
+          "answer": "coordinate",
+          "correct": true,
+          "at": "2026-10-30T23:44:45.533Z",
+          "stage": "MASTERY"
+        },
+        {
+          "answer": "coordinate",
+          "correct": true,
+          "at": "2026-10-30T23:44:45.840Z",
+          "stage": "MASTERY"
+        },
+        {
+          "answer": "coordinates",
+          "correct": false,
+          "at": "2026-10-30T23:44:46.148Z",
+          "stage": "MASTERY"
+        },
+        {
+          "answer": "coordinate",
+          "correct": true,
+          "at": "2026-10-30T23:44:46.455Z",
+          "stage": "MASTERY"
+        },
+        {
+          "answer": "coordinate",
+          "correct": true,
+          "at": "2026-10-30T23:45:06.290Z",
+          "stage": "MASTERY"
+        },
+        {
+          "answer": "coordinate",
+          "correct": true,
+          "at": "2026-10-30T23:45:06.496Z",
+          "stage": "MASTERY"
+        },
+        {
+          "answer": "coordinate",
+          "correct": true,
+          "at": "2026-10-30T23:45:06.814Z",
+          "stage": "TRANSFER"
+        }
+      ],
+      "hints": [],
+      "masteredAt": "2026-10-30T23:45:06.496Z"
+    },
+    "s01-reorder": {
+      "stage": "REVIEW",
+      "failures": 0,
+      "streak": 0,
+      "answer": "I coordinate the UX team",
+      "feedback": "Transfer accepted. You used the structure in a different context. Review is scheduled.",
+      "uncertain": false,
+      "deferred": false,
+      "history": [
+        {
+          "answer": "I coordinate the design team.",
+          "correct": true,
+          "at": "2026-10-30T23:45:07.419Z",
+          "stage": "INITIAL_ATTEMPTS"
+        },
+        {
+          "answer": "I coordinate the UX team",
+          "correct": true,
+          "at": "2026-10-30T23:45:14.132Z",
+          "stage": "TRANSFER"
+        }
+      ],
+      "hints": []
+    },
+    "s01-connector": {
+      "stage": "INITIAL_ATTEMPTS",
+      "failures": 0,
+      "streak": 0,
+      "answer": "",
+      "feedback": "Saved for tomorrow. You can continue the course. This exercise is not marked mastered.",
+      "uncertain": false,
+      "deferred": true,
+      "history": [],
+      "hints": []
+    },
+    "s01-rewrite": {
+      "stage": "REVIEW",
+      "failures": 1,
+      "streak": 0,
+      "answer": "She coordinates the UX team.",
+      "feedback": "Transfer accepted. You used the structure in a different context. Review is scheduled.",
+      "uncertain": false,
+      "deferred": false,
+      "history": [
+        {
+          "answer": "She coordinate the design team.",
+          "correct": false,
+          "at": "2026-10-30T23:45:15.292Z",
+          "stage": "INITIAL_ATTEMPTS"
+        },
+        {
+          "answer": "She coordinates the design team.",
+          "correct": true,
+          "at": "2026-10-30T23:45:22.111Z",
+          "stage": "INITIAL_ATTEMPTS"
+        },
+        {
+          "answer": "She coordinates the UX team.",
+          "correct": true,
+          "at": "2026-10-30T23:45:22.454Z",
+          "stage": "TRANSFER"
+        }
+      ],
+      "hints": []
+    },
+    "s01-free": {
+      "stage": "REVIEW",
+      "failures": 0,
+      "streak": 0,
+      "answer": "",
+      "feedback": "Self-assessment saved. No automatic writing grade.",
+      "uncertain": false,
+      "deferred": false,
+      "history": [
+        {
+          "answer": "I coordinate Project Orion. I review the schedule because our team needs clear priorities. Next, I will confirm the date.",
+          "correct": null,
+          "at": "2026-10-30T23:45:44.217Z",
+          "stage": "REVIEW"
+        }
+      ],
+      "hints": []
+    },
+    "assessment-0-2": {
+      "stage": "REVIEW",
+      "failures": 3,
+      "streak": 3,
+      "answer": "coordinate",
+      "feedback": "Transfer accepted. You used the structure in a different context. Review is scheduled.",
+      "uncertain": false,
+      "deferred": false,
+      "history": [
+        {
+          "answer": "coordinates",
+          "correct": false,
+          "at": "2026-10-30T23:44:31.031Z",
+          "stage": "INITIAL_ATTEMPTS"
+        },
+        {
+          "answer": "coordinates",
+          "correct": false,
+          "at": "2026-10-30T23:44:31.314Z",
+          "stage": "INITIAL_ATTEMPTS"
+        },
+        {
+          "answer": "coordinates",
+          "correct": false,
+          "at": "2026-10-30T23:44:31.618Z",
+          "stage": "INITIAL_ATTEMPTS"
+        },
+        {
+          "answer": "coordinate",
+          "correct": true,
+          "at": "2026-10-30T23:44:45.533Z",
+          "stage": "MASTERY"
+        },
+        {
+          "answer": "coordinate",
+          "correct": true,
+          "at": "2026-10-30T23:44:45.840Z",
+          "stage": "MASTERY"
+        },
+        {
+          "answer": "coordinates",
+          "correct": false,
+          "at": "2026-10-30T23:44:46.148Z",
+          "stage": "MASTERY"
+        },
+        {
+          "answer": "coordinate",
+          "correct": true,
+          "at": "2026-10-30T23:44:46.455Z",
+          "stage": "MASTERY"
+        },
+        {
+          "answer": "coordinate",
+          "correct": true,
+          "at": "2026-10-30T23:45:06.290Z",
+          "stage": "MASTERY"
+        },
+        {
+          "answer": "coordinate",
+          "correct": true,
+          "at": "2026-10-30T23:45:06.496Z",
+          "stage": "MASTERY"
+        },
+        {
+          "answer": "coordinate",
+          "correct": true,
+          "at": "2026-10-30T23:45:06.814Z",
+          "stage": "TRANSFER"
+        }
+      ],
+      "hints": [],
+      "masteredAt": "2026-10-30T23:45:06.496Z"
+    }
+  },
+  "reviewIntervals": [
+    1,
+    3,
+    7
+  ],
+  "lessonProgress": {
+    "s01": {
+      "startedAt": "2026-10-30T23:44:20.589Z",
+      "lastStep": "s01-listen",
+      "spoken": true,
+      "spokenRatings": [
+        "I answered the question without reading the model."
+      ],
+      "seconds": 84
+    }
+  },
+  "assessmentProgress": {
+    "assessment-0": {
+      "step": 6,
+      "answers": {
+        "assessment-0-2": "coordinate"
+      },
+      "speaking": true,
+      "writingScore": "2",
+      "speakingScore": "1",
+      "finished": true
+    }
+  },
+  "preferences": {
+    "engine": "kokoro",
+    "neuralVoice": "af_sarah",
+    "browserVoice": "",
+    "subtitles": false
+  }
+}

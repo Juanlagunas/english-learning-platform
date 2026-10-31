@@ -1,10 +1,11 @@
 # Inglés Lagunas
 
-A free, static **American English** practice app for A2–B1 learning, built with React, TypeScript, and Vite. All workplace scenarios use fictional **Project Orion**. No account, API key, paid service, backend, or AI grading. Neural voice synthesis runs locally and is separate from answer evaluation.
+A free, static **American English** practice app for A2–B1 learning, built with React, TypeScript, and Vite. The curriculum uses **42 software-engineering lessons and 18 everyday-English lessons**. All workplace scenarios use fictional **Project Orion**; everyday situations are also fictional. No account, API key, paid service, backend, or AI grading. Neural voice synthesis runs locally and is separate from answer evaluation. The existing 60 lesson IDs and exercise IDs are unchanged.
 
 ## Practice
 
 - 60 authored sessions across 12 weeks, five sessions per week; a flexible 90-calendar-day roadmap, not 90 consecutive days or a CEFR guarantee.
+- Weeks 1–6 alternate three technology lessons with two everyday lessons; weeks 7–12 use four technology lessons and one everyday lesson. Simple introductions and routines lead into weekly updates, status reports, API/integration work, microservices, testing, deployments, incidents, estimation, technical decisions, leadership, and respectful negotiation. Vocabulary is taught in full situations, not isolated word lists.
 - Each session has an objective, one audio-first conversation, five written exercises, a speaking prompt, explanation, Spanish help, and retrieval review.
 - Listening comprehension, cloze, word ordering, connectors, targeted rewrites, and short free writing with model answers and a self-assessment rubric.
 - All 17 requested connectors have meaning, usage, contrasting uses, examples, pronunciation through TTS, and active practice. Seven conversational rescue phrases are included.
@@ -35,7 +36,7 @@ npm run build
 
 ## Architecture and content
 
-- `src/lesson-data.json`: 60 editorial rows and 12 week descriptions. The ordered row fields are title, audio conversation, correct interpretation, cloze prompt, cloze answer, unnatural sentence, natural rewrite, and explanation.
+- `src/lesson-data.json`: 60 editorial rows and 12 week descriptions. The ordered row fields are title, audio conversation, correct interpretation, cloze prompt, cloze answer, unnatural sentence, natural rewrite, and explanation. Matching translations, two distractors, and technology/general contexts share the same row index.
 - `src/content.ts`: adapts editorial rows into typed `Lesson` / `Task` objects, with reusable pedagogy, interleaving, and seven assessment forms.
 - `src/connectors.ts`: structured connector reference and practice examples.
 - `src/types.ts`: content and versioned progress schema.
@@ -49,7 +50,7 @@ npm run build
 - `src/App.tsx`: dashboard, learning path, language reference, review queue, progress and data portability.
 - `tests/engine.test.ts` and `tests/learning.test.ts`: curriculum contract, grading, scheduler, malformed imports, persistence, honest metrics, correction state transitions, and voice preference/ranking.
 
-To add content, preserve unique task/session IDs and update the curriculum contract tests. Objective tasks declare explicit accepted answers; do not label model matching as AI evaluation. Rewrites accept verified equivalents, diagnose known target errors, and explicitly mark unfamiliar alternatives as uncertain rather than incorrect. Use the optional ChatGPT correction prompt for nuance. Normalization accepts case, punctuation, whitespace, and common contractions.
+To edit content, preserve task/session IDs and update the curriculum contract tests. Bump `CONTENT_REVISION` when expected meaning changes. Current state and correction-history entries carry this revision; reconciliation preserves previous answers, drafts, completions, review dates, and assessment snapshots while leaving revised items pending for a new check. Old attempts do not score a new assessment. A saved draft may need editing to fit the new prompt; the exercise explains that change. Objective tasks declare explicit accepted answers; do not label model matching as AI evaluation. Rewrites accept verified equivalents, diagnose known target errors, and explicitly mark unfamiliar alternatives as uncertain rather than incorrect. Use the optional ChatGPT correction prompt for nuance. Normalization accepts case, punctuation, whitespace, and common contractions.
 
 ## Privacy, persistence, and limitations
 
@@ -96,3 +97,5 @@ The `sharp` dependency brought by Transformers.js is overridden to patched 0.35.
 ## Specification workflow
 
 OpenSpec owns the behavior contract; Spec Kit owns the linked plan, constitution, and implementation tasks. See [feature spec](specs/001-stable-90-day-learning/spec.md), [plan](specs/001-stable-90-day-learning/plan.md), and [audit evidence](specs/001-stable-90-day-learning/audit-report.md). Tooling is development-only; no application dependency was added.
+
+The software-focused update is specified in [curriculum spec](specs/002-software-american-curriculum/spec.md); see its [verification report](specs/002-software-american-curriculum/audit-report.md) for the current release evidence.

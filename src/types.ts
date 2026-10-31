@@ -1,6 +1,8 @@
 export type TaskKind = 'cloze' | 'reorder' | 'connector' | 'rewrite' | 'free' | 'listen';
 export interface Task {
     id: string;
+    contentRevision?:string;
+    context?:'technology'|'general';
     kind: TaskKind;
     topic: string;
     prompt: string;
@@ -18,6 +20,7 @@ export interface Task {
 }
 export interface Lesson {
     id: string;
+    context:'technology'|'general';
     week: number;
     day: number;
     title: string;
@@ -83,6 +86,7 @@ export interface Progress {
 }
 export type LearningStage = 'INITIAL_ATTEMPTS' | 'RETEACH' | 'MASTERY' | 'TRANSFER' | 'REVIEW';
 export interface LearningState {
+    contentRevision?:string;
     stage: LearningStage;
     failures: number;
     streak: number;
@@ -96,6 +100,7 @@ export interface LearningState {
         correct: boolean | null;
         at: string;
         stage: LearningStage;
+        contentRevision?:string;
     }[];
     hints: {
         at: string;

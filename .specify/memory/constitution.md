@@ -3,7 +3,7 @@
 Versión 1.0.0 · adoptada 2026-10-30.
 
 ## I. Alcance y sencillez
-El proyecto MUST aplicar KISS, YAGNI y DRY. Esta entrega corrige la auditoría de cierre autorizada; no reconstruye la aplicación ni incorpora servicios, cuentas o dependencias de ejecución nuevas.
+El proyecto MUST aplicar KISS, YAGNI y DRY. Esta entrega corrige la auditoría de cierre y los ajustes curriculares posteriores autorizados; no reconstruye la aplicación ni incorpora servicios, cuentas o dependencias de ejecución nuevas.
 
 ## II. Continuidad y compatibilidad
 La aplicación MUST conservar `compass-progress-v1`, esquema 1, IDs de contenido y claves de preferencias existentes. Las extensiones se incorporan con valores por defecto compatibles. Importaciones inválidas MUST dejar intactos los datos anteriores. Guardado fallido MUST ser visible, no presentarse como éxito.

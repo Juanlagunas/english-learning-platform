@@ -6,8 +6,8 @@ import {allTasks} from './content';
 import {reconcileProgress} from './progress';
 import {restorePreferences} from './preferences';
 export function useProgress(){
- const [initial]=useState(()=>{const loaded=loadProgress();return {...loaded,progress:reconcileProgress(loaded.progress,allTasks)};});const current=useRef(initial.progress),blocked=useRef(Boolean(initial.error));
- const [progress,setState]=useState(initial.progress),[storageError,setError]=useState(initial.error??'');
+ const [initial]=useState(()=>{const loaded=loadProgress();const progress=reconcileProgress(loaded.progress,allTasks);let migrationError='';if(progress!==loaded.progress&&!loaded.error)try{saveProgress(progress);}catch{migrationError='Updated progress is only in this tab: browser storage is unavailable or full. Export Progress before closing.';}return {...loaded,progress,migrationError};});const current=useRef(initial.progress),blocked=useRef(Boolean(initial.error));
+ const [progress,setState]=useState(initial.progress),[storageError,setError]=useState(initial.error??initial.migrationError);
  const update=useCallback((action:SetStateAction<Progress>):boolean=>{
   const next=typeof action==='function'?action(current.current):action;
   if(next===current.current)return !blocked.current;

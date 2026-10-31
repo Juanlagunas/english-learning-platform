@@ -9,6 +9,7 @@ import { Exercise, copyText } from './Exercise';
 import { Audio } from './Audio';
 import { LearningContext } from './LearningContext';
 import { recordLearningEvent } from './engine';
+import {initialLearningState} from './learning';
 import {useProgress} from './useProgress';
 import {exportProgress} from './preferences';
 import {completionStats,lessonStatus,startLesson,patchLesson,recordPractice,completeLesson,taskMastered} from './progress';
@@ -31,7 +32,7 @@ export default function App() {
     const file = useRef<HTMLInputElement>(null);
     function navigate(next: Page) { setLessonId(null); setAssessment(null); setPage(next); setReviewId(null); setMessage(''); window.scrollTo(0, 0); setTimeout(() => main.current?.focus(), 0); }
     const onTime=useCallback((seconds:number)=>{if(lessonId){const lesson=lessons.find(l=>l.id===lessonId)!;setP(old=>recordPractice(old,lesson,seconds));}},[lessonId,setP]);
-    function draft(id:string,answer:string){setP(old=>({...old,drafts:{...old.drafts,[id]:answer}}));}
+    function draft(id:string,answer:string){setP(old=>({...old,drafts:{...old.drafts,[id]:answer},exerciseStates:{...old.exerciseStates,[id]:old.exerciseStates[id]??{...initialLearningState(),contentRevision:allTasks.find(t=>t.id===id)?.contentRevision}}}));}
     function attempt(t: Task, a: string, self?: boolean) { if (t.kind === 'free')
         setP(old => recordAttempt(old, t, a, self)); }
     const stats=weeklyStats(p),course=completionStats(p,lessons),completed=course.completed,next=course.next??lessons[0];
