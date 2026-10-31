@@ -35,7 +35,7 @@ scope.onmessage=(event:MessageEvent<SynthRequest>)=>{
    const tts=await getModel(request.id);
    if(active!==request.id)return;
    send({type:'status',id:request.id,message:'Generating speech on this device…'});
-   const audio=await tts.generate(request.text,{voice:request.voice,speed:request.speed});
+   const audio=await tts.generate(request.text,{voice:'af_sarah',speed:request.speed});
    if(active===request.id)send({type:'audio',id:request.id,blob:audio.toBlob()});
   }catch(error){send({type:'error',id:request.id,message:error instanceof Error?error.message:'Speech generation failed.'});}
  });

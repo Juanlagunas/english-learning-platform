@@ -50,8 +50,10 @@ export interface Completion {
 export interface Assessment {
     id: string;
     at: string;
-    listening: number;
-    grammar: number;
+    listeningChecked?:number;
+    grammarChecked?:number;
+    listening: number|null;
+    grammar: number|null;
     writing: number;
     speaking: number;
 }
@@ -65,10 +67,14 @@ export interface Progress {
     practice: {
         at: string;
         seconds: number;
+        lessonId?:string;
     }[];
     drafts: Record<string, string>;
     mode: number;
     exerciseStates: Record<string, LearningState>;
+    lessonProgress:Record<string,LessonProgress>;
+    assessmentProgress:Record<string,AssessmentProgress>;
+    preferences?:Preferences;
     reviewIntervals: [
         number,
         number,
@@ -114,3 +120,7 @@ export type LearningEvent = {
 } | {
     type: 'restart';
 };
+
+export interface LessonProgress {full?:boolean;startedAt:string;lastStep:string;spoken:boolean;spokenRatings:string[];seconds:number;}
+export interface AssessmentProgress {finished?:boolean;step:number;answers:Record<string,string>;speaking:boolean;writingScore:string;speakingScore:string;}
+export interface Preferences {engine:'kokoro'|'browser';neuralVoice:string;browserVoice:string;subtitles:boolean;}

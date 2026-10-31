@@ -9,14 +9,14 @@ export function voiceRank(v: VoiceInfo): number {
 }
 export function englishVoices<T extends VoiceInfo>(voices: T[]): T[] { return voices.filter(v => /^en(?:[-_]|$)/i.test(v.lang)).sort((a, b) => voiceRank(b) - voiceRank(a) || a.name.localeCompare(b.name)); }
 export function preferredVoice<T extends VoiceInfo>(voices: T[], uri: string): T | undefined { return voices.find(v => v.voiceURI === uri) ?? englishVoices(voices)[0]; }
-export function readVoicePreference(storage: Pick<Storage, 'getItem'> = localStorage): string { try {
-    return storage.getItem(VOICE_KEY) ?? '';
+export function readVoicePreference(storage?: Pick<Storage, 'getItem'>): string { try {
+    return (storage??localStorage).getItem(VOICE_KEY) ?? '';
 }
 catch {
     return '';
 } }
-export function saveVoicePreference(uri: string, storage: Pick<Storage, 'setItem'> = localStorage): boolean { try {
-    storage.setItem(VOICE_KEY, uri);
+export function saveVoicePreference(uri: string, storage?: Pick<Storage, 'setItem'>): boolean { try {
+    (storage??localStorage).setItem(VOICE_KEY, uri);
     return true;
 }
 catch {

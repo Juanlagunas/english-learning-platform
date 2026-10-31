@@ -23,7 +23,7 @@ describe('curriculum contract', () => {
                 if (t.kind !== 'free') {
                     expect(t.answers?.length).toBeGreaterThan(0);
                     expect(grade(t, t.answers![0])).toBe(true);
-                    expect(grade(t, 'unrelated incorrect text')).toBe(false);
+                    expect(grade(t,'unrelated incorrect text')).toBe(t.kind==='rewrite'?null:false);
                 }
                 else {
                     expect(t.rubric).toHaveLength(3);

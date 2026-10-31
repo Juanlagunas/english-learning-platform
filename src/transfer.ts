@@ -1,17 +1,21 @@
 import type { Task } from './types';
-// Editorially selected noun substitutions preserve verb morphology and number.
-const replacements: [
-    RegExp,
-    string
-][] = [[/design team/gi, 'UX team'], [/designs/gi, 'wireframes'], [/designers/gi, 'researchers'], [/designer/gi, 'researcher'], [/design/gi, 'prototype'], [/report/gi, 'brief'], [/summary/gi, 'overview'], [/figures/gi, 'estimates'], [/budget/gi, 'funding'], [/approval/gi, 'confirmation'], [/security/gi, 'architecture'], [/review/gi, 'assessment'], [/launch/gi, 'rollout'], [/release/gi, 'delivery'], [/prototype/gi, 'mockup'], [/plan/gi, 'schedule'], [/issue/gi, 'blocker'], [/problem/gi, 'defect'], [/chart/gi, 'diagram'], [/screen/gi, 'page'], [/feature/gi, 'function'], [/Monday/gi, 'Tuesday'], [/Friday/gi, 'Thursday'], [/yesterday/gi, 'last week'], [/tomorrow/gi, 'next week'], [/goal/gi, 'objective'], [/risks/gi, 'constraints'], [/risk/gi, 'constraint'], [/notes/gi, 'minutes'], [/walk/gi, 'short run'], [/dependency/gi, 'prerequisite'], [/three months/gi, 'six weeks'], [/that/gi, 'the last point'], [/jump in/gi, 'interrupt'], [/clarify/gi, 'explain the next step'], [/success/gi, 'a good outcome']];
-export function vary(text: string): string { let result = text; for (const [pattern, replacement] of replacements)
-    result = result.replace(pattern, replacement); return result; }
+// One bounded substitution pass: never replace a substring inside another word.
+const replacements:Record<string,string>={
+ 'design team':'UX team','designs':'wireframes','designers':'researchers','designer':'researcher','design':'prototype','report':'brief','summary':'overview','figures':'estimates','budget':'funding','approval':'confirmation','security':'architecture','review':'check','reviewed':'checked','reviewing':'checking','reviews':'checks','launch':'release','release':'launch','prototype':'mockup','planning':'scheduling','planned':'scheduled','plans':'schedules','plan':'schedule','issue':'blocker','problem':'defect','chart':'diagram','screen':'page','feature':'function','Monday':'Tuesday','Friday':'Thursday','yesterday':'last week','tomorrow':'next week','goal':'objective','risks':'delivery risks','risk':'delivery risk','notes':'minutes','walk':'short run','dependency':'prerequisite','three months':'six weeks','repeat that':'repeat the last point','jump in':'interrupt','clarify':'explain','success':'a good outcome'
+};
+const lower=Object.fromEntries(Object.entries(replacements).map(([k,v])=>[k.toLowerCase(),v]));
+const pattern=new RegExp('\\b('+Object.keys(replacements).sort((a,b)=>b.length-a.length).join('|')+')\\b','gi');
+export function vary(text:string):string{
+ return text.replace(pattern,word=>{const value=lower[word.toLowerCase()];return /^[A-Z]/.test(word)?value[0].toUpperCase()+value.slice(1):value;})
+ .replace(/\ba (overview|objective)\b/gi,(_,noun:string)=>'an '+noun)
+ .replace(/\ban (blocker|defect)\b/gi,(_,noun:string)=>'a '+noun);
+}
 export function withTransfer(t: Task): Task {
     if (t.kind === 'free')
         return t;
     const changed = vary(t.prompt);
     const alternatives = t.kind === 'rewrite' ? verifiedAlternatives(t.model) : [];
-    return { ...t, answers: [...(t.answers ?? []), ...alternatives], transfer: { ...t, id: t.id + '-transfer', prompt: `Transfer · Project Orion UX team: ${changed === t.prompt ? 'In the next planning conversation, ' : ''}${changed}`, audio: t.audio ? `In the UX planning conversation: ${vary(t.audio)}` : undefined, translation: undefined, options: t.options?.map(vary), answers: [...(t.answers ?? []).map(vary), ...alternatives.map(vary)], model: vary(t.model), errorExample: t.errorExample ? vary(t.errorExample) : undefined, explanation: `Use the same structure with the new details. ${t.explanation}` } };
+    return { ...t, answers: [...(t.answers ?? []), ...alternatives], transfer: { ...t, id: t.id + '-transfer', prompt: `Transfer · Project Orion UX team: ${changed === t.prompt ? 'In the next planning conversation, ' : ''}${changed}`, audio: t.audio ? `In the UX planning conversation: ${vary(t.audio)}` : undefined, translation:t.audio&&t.translation?`En la conversación de planificación UX: ${varySpanish(t.translation,t.audio)}`:undefined, options:t.kind==='reorder'?vary(t.model).replace(/[.?!]$/,'').split(' ').reverse():t.options?.map(vary), answers: [...(t.answers ?? []).map(vary), ...alternatives.map(vary)], model: vary(t.model), errorExample: t.errorExample ? vary(t.errorExample) : undefined, explanation: `Use the same structure with the new details. ${t.explanation}` } };
 }
 export function verifiedAlternatives(model: string): string[] {
     const alternatives = [];
@@ -38,4 +42,12 @@ export function verifiedAlternatives(model: string): string[] {
     if (model.includes('I will take the notes.'))
         alternatives.push("I'll take the notes.");
     return alternatives;
+}
+
+function varySpanish(text:string,english:string):string{
+ const pairs:Record<string,string>={'equipo de diseño':'equipo de UX','diseñadores':'investigadores','diseñadora':'investigadora','diseñador':'investigador','diseños':'wireframes','diseño':'prototipo','informe':'brief','resumen':'panorama','cifras':'estimaciones','presupuesto':'financiamiento','aprobación':'confirmación','revisión':'verificación','revisando':'verificando','revisar':'verificar','plan':'cronograma','problema':'defecto','gráfica':'diagrama','pantalla':'página','lunes':'martes','viernes':'jueves','ayer':'la semana pasada','riesgos':'riesgos de entrega','riesgo':'riesgo de entrega','notas':'minuta','dependencia':'prerrequisito','primeros tres meses':'primeras seis semanas','los primeros tres meses':'las primeras seis semanas','salí a caminar':'salí a correr un poco'};
+ const pattern=new RegExp('\\b('+Object.keys(pairs).sort((a,b)=>b.length-a.length).join('|')+')\\b','gi');
+ let result=text.replace(pattern,w=>{const v=pairs[w.toLowerCase()];return /^[A-ZÁÉÍÓÚ]/.test(w)?v[0].toUpperCase()+v.slice(1):v;});
+ if(/\btomorrow\b/i.test(english))result=result.replace(/\bmañana\b/gi,'la próxima semana');
+ return result;
 }

@@ -1,9 +1,10 @@
 import type { Progress, Task, Review, Attempt, LearningEvent } from './types';
 import { initialLearningState, transition } from './learning';
+import {validPreferences} from './preferences';
 export const STORAGE_KEY = 'compass-progress-v1';
-export function normalize(s: string): string { return s.normalize('NFKC').toLowerCase().replace(/[’‘]/g, "'").replace(/\b(i'm)\b/g, 'i am').replace(/\b(can't)\b/g, 'cannot').replace(/\b(won't)\b/g, 'will not').replace(/\b(don't)\b/g, 'do not').replace(/\b(doesn't)\b/g, 'does not').replace(/\b(didn't)\b/g, 'did not').replace(/[^\p{L}\p{N}'\s]/gu, ' ').replace(/\s+/g, ' ').trim(); }
-export function grade(task: Task, answer: string): boolean | null { return task.kind === 'free' ? null : (task.answers ?? []).some(a => normalize(a) === normalize(answer)); }
-export function freshProgress(now = new Date()): Progress { return { version: 1, started: now.toISOString(), completed: {}, attempts: [], reviews: {}, assessments: [], practice: [], drafts: {}, mode: 30, exerciseStates: {}, reviewIntervals: [1, 3, 7] }; }
+export {normalize,grade} from './grading';
+import {grade} from './grading';
+export function freshProgress(now = new Date()): Progress { return { version: 1, started: now.toISOString(), completed: {}, attempts: [], reviews: {}, assessments: [], practice: [], drafts: {}, mode: 30, exerciseStates: {}, reviewIntervals: [1, 3, 7],lessonProgress:{},assessmentProgress:{} }; }
 export function nextReview(taskId: string, correct: boolean, previous?: Review, now = new Date(), intervals: readonly number[] = [1, 3, 7]): Review {
     const box = correct ? Math.min((previous?.box ?? 0) + 1, 5) : 0;
     return { taskId, box, due: new Date(now.getTime() + [intervals[0], ...intervals, 14, 30][box] * 86400000).toISOString() };
@@ -17,10 +18,12 @@ export function recordAttempt(p: Progress, task: Task, answer: string, self?: bo
 export function recordLearningEvent(p: Progress, task: Task, event: LearningEvent, now = new Date()): Progress {
     const previous = p.exerciseStates[task.id] ?? initialLearningState();
     const state = transition(previous, event, task, now);
+    if(state===previous)return p;
     let result = { ...p, exerciseStates: { ...p.exerciseStates, [task.id]: state } };
-    if (event.type === 'answer' && state.history.length) {
+    if(state.answer!==previous.answer||['beginMastery','restart','explanation'].includes(event.type))result={...result,drafts:{...p.drafts,[task.id]:state.answer}};
+    if (event.type === 'answer' && state.history!==previous.history) {
         const latest = state.history.at(-1)!;
-        result = { ...result, attempts: [...p.attempts, { taskId: task.id, answer: event.answer, correct: latest.correct, at: now.toISOString(), topic: task.topic }].slice(-10000), drafts: { ...p.drafts, [task.id]: event.answer } };
+        result = { ...result, attempts: [...p.attempts, { taskId: task.id, answer: event.answer, correct: latest.correct, at: now.toISOString(), topic: task.topic }].slice(-10000), drafts: { ...p.drafts, [task.id]: state.answer } };
     }
     if (event.type === 'answer' && state.history.at(-1)?.correct === false) {
         result = { ...result, reviews: { ...p.reviews, [task.id]: nextReview(task.id, false, p.reviews[task.id], now, p.reviewIntervals) } };
@@ -40,7 +43,7 @@ export function parseProgress(raw: string): Progress {
     const p: unknown = JSON.parse(raw);
     if (!isRecord(p) || p.version !== 1 || !validDate(p.started) || !isRecord(p.completed) || !isRecord(p.reviews) || !isRecord(p.drafts) || !Array.isArray(p.attempts) || !Array.isArray(p.assessments) || !Array.isArray(p.practice) || typeof p.mode !== 'number' || ![5, 10, 15, 30].includes(p.mode))
         throw new Error('This is not a supported Inglés Lagunas progress file (schema version 1).');
-    if (Object.keys(p.completed).some(k => !/^s\d{2}$/.test(k)) || Object.values(p.completed).some(x => !isRecord(x) || !validDate(x.at) || !count(x.seconds) || !count(x.correct, 100) || !count(x.total, 100) || Number(x.correct) > Number(x.total)))
+    if (Object.keys(p.completed).some(k => !/^s(?:0[1-9]|[1-5][0-9]|60)$/.test(k)) || Object.values(p.completed).some(x => !isRecord(x) || !validDate(x.at) || !count(x.seconds) || !count(x.correct, 100) || !count(x.total, 100) || Number(x.correct) > Number(x.total)))
         throw new Error('Invalid session history.');
     if (Object.entries(p.reviews).some(([k, x]) => !isRecord(x) || x.taskId !== k || !validDate(x.due) || !Number.isInteger(x.box) || !count(x.box, 5)))
         throw new Error('Invalid review schedule.');
@@ -48,7 +51,7 @@ export function parseProgress(raw: string): Progress {
         throw new Error('Invalid saved answer.');
     if (p.attempts.length > 10000 || p.attempts.some(x => !isRecord(x) || !string(x.taskId, 120) || !string(x.answer) || ![true, false, null].includes(x.correct as boolean | null) || !validDate(x.at) || !string(x.topic, 300)))
         throw new Error('Invalid answer history.');
-    if (p.assessments.some(x => !isRecord(x) || !string(x.id, 100) || !validDate(x.at) || !['listening', 'grammar', 'writing', 'speaking'].every(k => count(x[k], 100))))
+    if (p.assessments.some(x => !isRecord(x) || !string(x.id, 100) || !validDate(x.at) || x.listeningChecked!==undefined&&(!Number.isInteger(x.listeningChecked)||!count(x.listeningChecked,2)) || x.grammarChecked!==undefined&&(!Number.isInteger(x.grammarChecked)||!count(x.grammarChecked,3)) || !['listening', 'grammar', 'writing', 'speaking'].every(k => x[k]===null&&['listening','grammar'].includes(k)||count(x[k], 100))))
         throw new Error('Invalid assessment history.');
     if (p.practice.some(x => !isRecord(x) || !validDate(x.at) || !count(x.seconds)))
         throw new Error('Invalid practice history.');
@@ -62,14 +65,19 @@ export function parseProgress(raw: string): Progress {
     const stages = ['INITIAL_ATTEMPTS', 'RETEACH', 'MASTERY', 'TRANSFER', 'REVIEW'];
     if (!isRecord(p.exerciseStates) || Object.values(p.exerciseStates).some(s => !isRecord(s) || !stages.includes(s.stage as string) || !Number.isInteger(s.failures) || !count(s.failures, 3) || !Number.isInteger(s.streak) || !count(s.streak, 3) || !string(s.answer) || !string(s.feedback) || typeof s.uncertain !== 'boolean' || typeof s.deferred !== 'boolean' || s.masteredAt !== undefined && !validDate(s.masteredAt) || !Array.isArray(s.history) || s.history.length > 500 || s.history.some(h => !isRecord(h) || !string(h.answer) || !validDate(h.at) || !stages.includes(h.stage as string) || ![true, false, null].includes(h.correct as boolean | null)) || !Array.isArray(s.hints) || s.hints.length > 500 || s.hints.some(h => !isRecord(h) || !validDate(h.at) || !['hint', 'explanation', 'transcript', 'translation'].includes(h.kind as string))))
         throw new Error('Invalid correction state or hint history.');
+    if(p.lessonProgress===undefined)p.lessonProgress={};
+    if(p.assessmentProgress===undefined)p.assessmentProgress={};
+    if(!isRecord(p.lessonProgress)||Object.entries(p.lessonProgress).some(([id,v])=>!/^s(?:0[1-9]|[1-5][0-9]|60)$/.test(id)||!isRecord(v)||!validDate(v.startedAt)||!string(v.lastStep,100)||typeof v.spoken!=='boolean'||!Array.isArray(v.spokenRatings)||v.spokenRatings.some(x=>!string(x,300))||!count(v.seconds)||v.full!==undefined&&typeof v.full!=='boolean'))throw new Error('Invalid partial lesson progress.');
+    if(!isRecord(p.assessmentProgress)||Object.entries(p.assessmentProgress).some(([id,v])=>!/^assessment-[0-6]$/.test(id)||!isRecord(v)||!Number.isInteger(v.step)||!count(v.step,6)||v.finished!==undefined&&typeof v.finished!=='boolean'||!isRecord(v.answers)||Object.values(v.answers).some(x=>!string(x))||typeof v.speaking!=='boolean'||!['','0','1','2','3'].includes(v.writingScore as string)||!['','0','1','2','3'].includes(v.speakingScore as string)))throw new Error('Invalid partial assessment.');
+    if(p.preferences!==undefined&&!validPreferences(p.preferences))throw new Error('Invalid audio preferences.');
     return p as unknown as Progress;
 }
-export function loadProgress(storage: Pick<Storage, 'getItem'> = localStorage): {
+export function loadProgress(storage?: Pick<Storage, 'getItem'>): {
     progress: Progress;
     error?: string;
 } {
     try {
-        const raw = storage.getItem(STORAGE_KEY);
+        const raw = (storage??localStorage).getItem(STORAGE_KEY);
         return { progress: raw ? parseProgress(raw) : freshProgress() };
     }
     catch {
@@ -91,7 +99,8 @@ export function weeklyStats(p: Progress, now = new Date()) {
     return { goalWeekdays: [...totals].filter(([, s]) => s >= 900).map(([d]) => (new Date(d + 'T12:00:00').getDay() + 6) % 7), days: [...totals.values()].filter(s => s >= 900).length, minutes: Math.floor(events.reduce((a, x) => a + x.seconds, 0) / 60) };
 }
 export function streak(p: Progress, now = new Date()): number {
-    const days = new Set(p.practice.filter(x => x.seconds >= 60).map(x => localDay(new Date(x.at))));
+    const totals=new Map<string,number>();for(const item of p.practice){const day=localDay(new Date(item.at));totals.set(day,(totals.get(day)??0)+item.seconds);}
+    const days=new Set([...totals].filter(([,seconds])=>seconds>=60).map(([day])=>day));
     let n = 0;
     const day = new Date(now);
     if (!days.has(localDay(day)))
@@ -113,5 +122,5 @@ export function weakTopics(p: Progress): [
     }
     return [...map].sort((a, b) => b[1] - a[1]).slice(0, 5);
 }
-export function tutorSummary(p: Progress): string { return `Inglés Lagunas tutor handoff (fictional Project Orion only)\nCompleted: ${Object.keys(p.completed).length}/60 sessions\nPractice: ${Math.floor(p.practice.reduce((a, x) => a + x.seconds, 0) / 60)} minutes\nRecent error patterns: ${weakTopics(p).map(([t, n]) => `${t} (${n})`).join(', ') || 'No recorded errors yet'}\nLatest assessments: ${p.assessments.slice(-3).map(a => `${a.id}: listening ${a.listening}%, grammar ${a.grammar}%, writing self-score ${a.writing}%, speaking self-score ${a.speaking}%`).join('; ')}\nRecent answers:\n${p.attempts.slice(-8).map(a => `${a.topic}: ${a.answer} [${a.correct === null ? 'self-assessed' : a.correct ? 'matched model' : 'needs review'}]`).join('\n')}\nPlease ask short workplace questions one at a time. Let me answer spontaneously. Correct tense, auxiliaries, prepositions, and collocations; then ask me to retry. These results are practice indicators, not a CEFR certification.`; }
-export function correctionPrompt(t: Task, answer: string): string { return `Act as a supportive English tutor for an A2–B1 learner. Use only this fictional Project Orion scenario.\nTask: ${t.prompt}\nMy answer: ${answer}\nModel for comparison: ${t.model}\nGive nuanced feedback on meaning, grammar, natural collocations and clarity. Accept valid alternatives. Explain the top two error patterns briefly, offer a natural correction, and ask one follow-up question. Do not assign a formal CEFR level. Do not request real workplace or personal information.`; }
+export function tutorSummary(p: Progress): string { return `Inglés Lagunas tutor handoff (fictional Project Orion only)\nCompleted: ${Object.keys(p.completed).length}/60 sessions\nPractice: ${Math.floor(p.practice.reduce((a, x) => a + x.seconds, 0) / 60)} minutes\nRecent error patterns: ${weakTopics(p).map(([t, n]) => `${t} (${n})`).join(', ') || 'No recorded errors yet'}\nLatest assessments: ${p.assessments.slice(-3).map(a => `${a.id}: listening ${a.listening===null?'not scored':a.listening+'%'}, grammar ${a.grammar===null?'not scored':a.grammar+'%'}, writing self-score ${a.writing}%, speaking self-score ${a.speaking}%`).join('; ')}\nRecent answers:\n${p.attempts.slice(-8).map(a => `${a.topic}: ${a.answer} [${a.correct === null ? 'self-assessed' : a.correct ? 'matched model' : 'needs review'}]`).join('\n')}\nUse American English spelling, vocabulary, and natural phrasing. Please ask short workplace questions one at a time. Let me answer spontaneously. Correct tense, auxiliaries, prepositions, and collocations; then ask me to retry. These results are practice indicators, not a CEFR certification.`; }
+export function correctionPrompt(t: Task, answer: string): string { return `Act as a supportive American English tutor for an A2–B1 learner. Use American English spelling, vocabulary, and natural phrasing. Use only this fictional Project Orion scenario.\nTask: ${t.prompt}\nMy answer: ${answer}\nModel for comparison: ${t.model}\nGive nuanced feedback on meaning, grammar, natural collocations and clarity. Accept valid alternatives. Explain the top two error patterns briefly, offer a natural correction, and ask one follow-up question. Do not assign a formal CEFR level. Do not request real workplace or personal information.`; }
