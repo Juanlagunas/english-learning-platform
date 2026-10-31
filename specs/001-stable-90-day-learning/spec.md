@@ -28,7 +28,7 @@ Almacenamiento denegado o corrupto; archivo antiguo; respuesta incierta en una r
 ## Requirements
 
 ### Functional Requirements
-El contrato normativo único FR-001–FR-012 y sus escenarios se mantiene en [OpenSpec stable-learning](../../openspec/changes/stable-90-day-learning/specs/stable-learning/spec.md). Después del archivo de cierre, su ubicación vigente será `openspec/specs/stable-learning/spec.md`. Spec Kit no duplica ese texto.
+El contrato normativo único FR-001–FR-012 y sus escenarios se mantiene en [OpenSpec stable-learning](../../openspec/specs/stable-learning/spec.md). El cambio se archivó el 31-oct-2026; el contrato enlazado es la versión vigente. Spec Kit no duplica ese texto.
 
 ### Key Entities
 Lección, borrador, estado de corrección, finalización, práctica oral, repaso, evaluación, preferencias y respaldo. Los campos técnicos se definen en `data-model.md`.

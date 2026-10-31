@@ -15,8 +15,8 @@
 
 ## Phase 4: Verificación y cierre
 - [x] T008 [US3] Auditar contenido, audio, ayudas y navegación; ejecutar QA-01–QA-18 y documentar evidencia en `audit-report.md`.
-- [ ] T009 [US3] Ejecutar typecheck, lint, tests, build, validación OpenSpec y convergencia Spec Kit; corregir pendientes de aceptación.
-- [ ] T010 [US3] Archivar contrato OpenSpec, publicar en GitHub Pages y leer la versión pública antes de declarar cierre.
+- [x] T009 [US3] Ejecutar typecheck, lint, tests, build, validación OpenSpec y convergencia Spec Kit; corregir pendientes de aceptación.
+- [x] T010 [US3] Archivar contrato OpenSpec, publicar en GitHub Pages y leer la versión pública antes de declarar cierre.
 
 ## Phase 5: Ajustes del usuario
 - [x] T011 [US3] Conservar únicamente Sarah estadounidense, declarar en-US y revisar variantes ortográficas y vocabulario del material conforme al ajuste del 31-oct (FR-010).

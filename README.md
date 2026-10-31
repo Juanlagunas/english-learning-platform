@@ -42,9 +42,9 @@ npm run build
 - `src/grading.ts`: shared deterministic normalization and grading.
 - `src/progress.ts` / `src/useProgress.ts`: completion, resume, assessment scoring, immediate protected persistence.
 - `src/engine.ts`: Leitner-inspired scheduling, progress validation/storage, metrics, and tutor export.
-- `src/Audio.tsx`: Kokoro playback and five-voice comparison, browser speech backup, subtitles, saved preferences, and failure notices.
+- `src/Audio.tsx`: Sarah playback/sample, two speeds, subtitles, saved preferences, and failure notices.
 - `src/kokoro.worker.ts` / `src/kokoroClient.ts`: lazy local synthesis in a dedicated worker, WebGPU acceleration with single-thread WASM fallback for Pages compatibility, cancellation and a small in-memory replay cache.
-- `src/neuralVoices.ts`: five curated US voice IDs and browser-local engine/voice preferences.
+- `src/neuralVoices.ts`: Sarah US voice ID and compatibility with stored preferences from earlier versions.
 - `src/Exercise.tsx`, `src/Practice.tsx`: accessible exercise, lesson, speaking, and assessment flows.
 - `src/App.tsx`: dashboard, learning path, language reference, review queue, progress and data portability.
 - `tests/engine.test.ts` and `tests/learning.test.ts`: curriculum contract, grading, scheduler, malformed imports, persistence, honest metrics, correction state transitions, and voice preference/ranking.

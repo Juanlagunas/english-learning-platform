@@ -63,4 +63,6 @@ Sarah depende del modelo gratuito y del rendimiento/conectividad del dispositivo
 
 ## Publicación
 
-Pendiente de registrar el commit, workflow y lectura de la versión pública. No se considera publicado por el solo hecho de generar el build.
+Medido: commit de aplicación `9bef40089e92522369c3941c5cfe727a45488ff8`, publicado por el [workflow 41227149002](https://github.com/Juanlagunas/english-learning-platform/actions/runs/41227149002), con build y deploy correctos. Se leyó la [URL pública](https://juanlagunas.github.io/english-learning-platform/) después del despliegue: bundle `index-k2sVnOoJ.js`, título/encabezado Inglés Lagunas, sin compass visible, `en-US`, Continue Learning y el avance previo 1/60 conservado. Se abrió la lección pendiente y Sarah fue la única voz visible, normal 1.0; la muestra produjo audio finalizado de 7.475 s con readyState 4 y subtítulos exactos. La consola pública capturada no tuvo errores. No se importaron ni borraron datos de producción.
+
+OpenSpec archivó oficialmente el cambio como `2026-10-31-stable-90-day-learning` y creó el contrato vigente `openspec/specs/stable-learning/spec.md` (12 requisitos). Spec Kit conserva la constitución, plan, tareas y evidencia enlazados. El commit documental posterior cierra las casillas y registra estas observaciones, sin cambios en la aplicación.
